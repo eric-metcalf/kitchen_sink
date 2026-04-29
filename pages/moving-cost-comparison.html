@@ -515,6 +515,170 @@ h1 em {
   border-left: 2px solid var(--vermillion);
 }
 
+/* ============ FREIGHT DEEP DIVE ============ */
+.freight-intro {
+  font-family: 'Fraunces', serif;
+  font-size: 19px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 820px;
+  margin-bottom: 48px;
+  font-variation-settings: "opsz" 36;
+}
+
+.freight-intro strong {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid var(--ink);
+  margin-bottom: 32px;
+}
+
+@media (max-width: 720px) {
+  .tier-grid { grid-template-columns: 1fr; }
+}
+
+.tier {
+  background: var(--paper);
+  padding: 28px 32px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.tier:nth-child(2n) { border-right: none; }
+.tier:nth-last-child(-n+2) { border-bottom: none; }
+
+@media (max-width: 720px) {
+  .tier { border-right: none; border-bottom: 1px solid var(--rule); }
+  .tier:last-child { border-bottom: none; }
+}
+
+.tier.caution {
+  background: linear-gradient(180deg, var(--paper) 0%, rgba(194, 66, 38, 0.04) 100%);
+}
+
+.tier-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.tier-num {
+  font-family: 'Fraunces', serif;
+  font-size: 40px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  color: var(--vermillion);
+  font-variation-settings: "opsz" 144;
+}
+
+.tier-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.tier-tag.warning {
+  color: var(--vermillion);
+  font-weight: 500;
+}
+
+.tier h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  line-height: 1.15;
+}
+
+.tier-who {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.tier-price {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 144;
+}
+
+.tier-detail p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.tier-detail p:last-child { margin-bottom: 0; }
+
+.tier-best {
+  font-family: 'Fraunces', serif !important;
+  font-style: italic;
+  font-size: 13.5px !important;
+  color: var(--ink) !important;
+  padding-top: 12px;
+  border-top: 1px dashed var(--rule);
+}
+
+.rip-note {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 28px 36px;
+  border-left: 4px solid var(--vermillion);
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.rip-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  padding-top: 4px;
+}
+
+.rip-note p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(244, 239, 228, 0.82);
+}
+
+.rip-note strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .rip-note { grid-template-columns: 1fr; gap: 12px; padding: 24px 24px; }
+}
+
 /* ============ SCENARIOS ============ */
 .scenarios {
   display: grid;
@@ -810,10 +974,10 @@ footer .end {
       </div>
       <h3>Ship boxes only</h3>
       <p class="who">For: minimalists & furniture-ditchers</p>
-      <div class="price">$200 – $1,000</div>
-      <div class="price-sub">≈ 5–15 boxes · No furniture</div>
-      <div class="brand-list">Busfreighter (Greyhound) · USPS · UPS · FedEx · uShip</div>
-      <p>The dirty secret of cross-country moving: if you sell your furniture and just ship clothes, books, and personal stuff, you can spend less on the entire move than on a single PODS delivery. Busfreighter quotes around $0.70/lb in bulk; five 40-lb boxes from SF to NYC ran about $160 in recent comparisons.</p>
+      <div class="price">$200 – $1,500</div>
+      <div class="price-sub">≈ 5–30 boxes · No furniture</div>
+      <div class="brand-list">USPS · UPS · FedEx · MiniMoves · uShip · LTL freight</div>
+      <p>The dirty secret of cross-country moving: if you sell your furniture and just ship clothes, books, and personal stuff, you can spend less on the entire move than on a single PODS delivery. USPS Media Mail makes books almost free; parcel carriers handle small loads reliably; small-move specialists coordinate door-to-door for 10–30 boxes. See <strong>§ 03</strong> for the full breakdown.</p>
       <div class="pros-cons">
         <div class="pros">
           <h4>Pros</h4>
@@ -1030,10 +1194,94 @@ footer .end {
   </div>
 </section>
 
-<!-- ============ SCENARIOS ============ -->
+<!-- ============ FREIGHT DEEP DIVE ============ -->
 <section>
   <div class="section-head">
     <span class="section-num">§ 03</span>
+    <h2>The box-only path, examined closely</h2>
+    <span class="meta">Five ways to ship without a truck</span>
+  </div>
+
+  <p class="freight-intro">The cheapest cross-country move is the one with no furniture. Sell the couch on Marketplace, donate the IKEA shelves, ship the rest. Total damage: <strong>$400–$1,500</strong>, often less than even a single moving container costs. But "cheap shipping" is genuinely harder than it was five years ago — the legendary Greyhound Package Express, the favorite of grad students and broke artists for a century, shut its doors in 2022. Here's what's actually still available in 2026.</p>
+
+  <div class="tier-grid">
+
+    <!-- Tier A: Parcel carriers -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="tier-num">A</span>
+        <span class="tier-tag">Safe & Boring</span>
+      </div>
+      <h3>Parcel carriers</h3>
+      <p class="tier-who">USPS · UPS · FedEx</p>
+      <div class="tier-price">$20 – $60 per box</div>
+      <div class="tier-detail">
+        <p>The dependable choice. Five to fifteen boxes via USPS Priority Mail or FedEx Ground runs $200–$700 total, with tracking, insurance options, and 3–7 day transit. UPS and FedEx will pick up at her SF apartment for a small fee; USPS goes via any post office.</p>
+        <p>Don't overlook <strong>USPS Media Mail</strong> for books and CDs specifically — it's around $4–$15 per box and unbeatable for anyone with a real library.</p>
+        <p class="tier-best">Best for: fewer than 10 boxes, or anything she'd actually be sad to lose.</p>
+      </div>
+    </div>
+
+    <!-- Tier B: Small-move specialists -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="tier-num">B</span>
+        <span class="tier-tag">Door-to-Door</span>
+      </div>
+      <h3>Small-move specialists</h3>
+      <p class="tier-who">MiniMoves · Ship Smart · College Boxes</p>
+      <div class="tier-price">$400 – $1,500</div>
+      <div class="tier-detail">
+        <p>Curated brokers built specifically for partial-household moves — the gap between "few boxes via FedEx" and "full PODS container." They pick up at her SF apartment, coordinate the freight, and deliver to her NYC door.</p>
+        <p>College Boxes runs through the FedEx network (most reliable). Ship Smart and MiniMoves use a mix of LTL carriers and white-glove services. Pricing scales with weight and distance, but a typical 15-box cross-country move lands around $700–$1,200.</p>
+        <p class="tier-best">Best for: 10–30 boxes when she wants door-to-door without driving anywhere.</p>
+      </div>
+    </div>
+
+    <!-- Tier C: LTL Freight -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="tier-num">C</span>
+        <span class="tier-tag">DIY Freight</span>
+      </div>
+      <h3>LTL freight (palletized)</h3>
+      <p class="tier-who">via uShip · Estes · Old Dominion · ABF</p>
+      <div class="tier-price">$300 – $2,000</div>
+      <div class="tier-detail">
+        <p>The commercial freight world will move household goods if you palletize them. Stack boxes on a 4'×4' wood pallet, shrink-wrap the whole thing into a single unit, and a less-than-truckload carrier will haul it cross-country for far less than parcel rates.</p>
+        <p>The catch: pallets get moved between trucks at regional terminals (more handling = more risk), and you'll need a forklift or pay for liftgate service on both ends. uShip's marketplace lets carriers bid against each other, which usually wins the best price.</p>
+        <p class="tier-best">Best for: 200–2,000 lbs of dense, durable items — books, dishes, sturdy gear.</p>
+      </div>
+    </div>
+
+    <!-- Tier D: Bus -->
+    <div class="tier caution">
+      <div class="tier-head">
+        <span class="tier-num">D</span>
+        <span class="tier-tag warning">Cheapest, Caveat Emptor</span>
+      </div>
+      <h3>Busfreighter</h3>
+      <p class="tier-who">Bus-network broker</p>
+      <div class="tier-price">$150 – $600</div>
+      <div class="tier-detail">
+        <p>The cheapest option still standing. Busfreighter is a third-party broker that arranges shipments across regional bus carriers — they used to ride on Greyhound, now it's a patchwork. Five 40-lb boxes cross-country has historically run $160–$260.</p>
+        <p>The trade-off is real: <strong>BBB rating of D-</strong>, mixed customer reviews, reports of damaged or delayed shipments, and you have to drop off and pick up at bus terminals (no door delivery in most cases). They don't offer meaningful insurance.</p>
+        <p class="tier-best">Use only for replaceable, non-fragile, non-valuable items — and only if budget is the absolute top priority.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rip-note">
+    <span class="rip-label">↓ In Memoriam</span>
+    <p><strong>Greyhound Package Express, 1929–2022.</strong> For nearly a century, the cheapest way to move a few boxes across America was on the Greyhound. The service officially shut down on September 30, 2022. If anyone — a blog post, an old comment thread, a friend who moved in 2019 — recommends it, they're working from outdated information. Busfreighter still uses parts of the bus network, but the original golden-era service is gone.</p>
+  </div>
+</section>
+
+<!-- ============ SCENARIOS ============ -->
+<section>
+  <div class="section-head">
+    <span class="section-num">§ 04</span>
     <h2>So, which one should she pick?</h2>
     <span class="meta">Three common scenarios</span>
   </div>
@@ -1092,7 +1340,7 @@ footer .end {
 <!-- ============ TIPS ============ -->
 <section>
   <div class="section-head">
-    <span class="section-num">§ 04</span>
+    <span class="section-num">§ 05</span>
     <h2>Money-saving tactics, regardless of method</h2>
     <span class="meta">Seven things that actually move the needle</span>
   </div>
