@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SF → East Coast: A Moving Cost Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f4efe4;
+  --paper-deep: #ebe4d4;
+  --ink: #1c1d1f;
+  --ink-soft: #4a4844;
+  --vermillion: #c24226;
+  --vermillion-deep: #8c2e1a;
+  --teal: #2f5d5c;
+  --gold: #b48a3c;
+  --rule: #d9d1bc;
+  --shadow: rgba(28, 29, 31, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-image:
+    radial-gradient(ellipse 800px 400px at 80% 0%, rgba(194, 66, 38, 0.04), transparent),
+    radial-gradient(ellipse 600px 600px at 0% 100%, rgba(47, 93, 92, 0.05), transparent);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Subtle paper grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1000;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 60px 48px 120px;
+  position: relative;
+}
+
+/* ============ HEADER ============ */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+  margin-bottom: 48px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.masthead .vol { color: var(--vermillion); font-weight: 500; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 80px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--vermillion);
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 144;
+}
+
+h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--vermillion);
+}
+
+.deck {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.35;
+  max-width: 560px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-variation-settings: "opsz" 36;
+}
+
+.route-card {
+  border: 1px solid var(--ink);
+  padding: 24px 28px;
+  background: var(--paper-deep);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-width: 240px;
+}
+
+.route-card .route-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin: 12px 0;
+}
+
+.route-card .dots {
+  flex: 1;
+  border-bottom: 2px dotted var(--ink-soft);
+  margin: 0 4px;
+  height: 1px;
+}
+
+.route-card .meta {
+  color: var(--ink-soft);
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+/* ============ TLDR ============ */
+.tldr {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 48px 56px;
+  margin-bottom: 80px;
+  position: relative;
+  border-radius: 2px;
+}
+
+.tldr::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px;
+  right: 8px; bottom: 8px;
+  border: 1px solid var(--ink);
+  z-index: -1;
+}
+
+.tldr-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 16px;
+}
+
+.tldr h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.tldr p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(244, 239, 228, 0.85);
+  max-width: 780px;
+}
+
+.tldr p + p { margin-top: 14px; }
+
+.tldr strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* ============ SECTION HEADERS ============ */
+.section-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  margin: 96px 0 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--vermillion);
+}
+
+.section-head h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.section-head .meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ============ COST CHART ============ */
+.chart-wrap {
+  background: var(--paper-deep);
+  padding: 40px 48px;
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+}
+
+.chart-axis {
+  position: relative;
+  margin-left: 200px;
+  height: 28px;
+  border-bottom: 1px solid var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.tick {
+  position: absolute;
+  bottom: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-soft);
+  transform: translateX(-50%);
+}
+
+.tick::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 1px; height: 6px;
+  background: var(--ink-soft);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.bar-label {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: right;
+  padding-right: 8px;
+  letter-spacing: -0.005em;
+}
+
+.bar-label .sub {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.bar-track {
+  height: 22px;
+  position: relative;
+}
+
+.bar-fill {
+  position: absolute;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--vermillion));
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  box-shadow: 0 1px 3px var(--shadow);
+}
+
+.bar-fill.diy { background: linear-gradient(90deg, var(--teal), #4a8f8d); }
+.bar-fill.container { background: linear-gradient(90deg, var(--gold), #d4a04a); }
+.bar-fill.movers { background: linear-gradient(90deg, var(--vermillion), var(--vermillion-deep)); }
+.bar-fill.cheap { background: linear-gradient(90deg, #6b8b7a, var(--teal)); }
+
+.bar-value {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--paper);
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.chart-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--rule);
+  text-align: center;
+}
+
+/* ============ OPTION CARDS ============ */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 0;
+  border: 1px solid var(--ink);
+}
+
+.option {
+  padding: 36px 32px;
+  background: var(--paper);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.option:nth-child(2n) { border-right: none; }
+.option:nth-last-child(-n+2) { border-bottom: none; }
+
+@media (max-width: 800px) {
+  .option { border-right: none; border-bottom: 1px solid var(--rule); }
+  .option:last-child { border-bottom: none; }
+}
+
+.option-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.option-rank {
+  font-family: 'Fraunces', serif;
+  font-size: 56px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 0.9;
+  color: var(--vermillion);
+  font-variation-settings: "opsz" 144;
+}
+
+.option-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+  line-height: 1.4;
+}
+
+.option-tag .stars { color: var(--gold); letter-spacing: 0.05em; }
+
+.option h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.option .who {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.option .price {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 32px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144;
+}
+
+.option .price-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.option p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.option .pros-cons {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px dashed var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pros-cons h4 {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.pros h4 { color: var(--teal); }
+.cons h4 { color: var(--vermillion); }
+
+.pros-cons ul {
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.pros-cons li {
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.pros li::before {
+  content: '+';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.cons li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--vermillion);
+  font-weight: 600;
+}
+
+.brand-list {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  background: var(--paper-deep);
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  border-left: 2px solid var(--vermillion);
+}
+
+/* ============ SCENARIOS ============ */
+.scenarios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+@media (max-width: 800px) {
+  .scenarios { grid-template-columns: 1fr; }
+}
+
+.scenario {
+  background: var(--paper);
+  padding: 32px 28px;
+}
+
+.scenario-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 20px;
+}
+
+.scenario h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.scenario .when {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.scenario .pick {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 8px;
+}
+
+.scenario .pick-name {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.scenario .est {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--ink);
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 16px;
+}
+
+.scenario p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ============ TIPS ============ */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.tip {
+  position: relative;
+  padding-left: 56px;
+}
+
+.tip-num {
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-family: 'Fraunces', serif;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--vermillion);
+  line-height: 1;
+  font-variation-settings: "opsz" 144;
+}
+
+.tip h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.tip p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ============ FOOTER ============ */
+footer {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+footer .end {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 32px 20px 80px; }
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+  .tldr { padding: 32px 24px; }
+  .chart-wrap { padding: 24px 16px; }
+  .chart-axis { margin-left: 110px; }
+  .bar-row { grid-template-columns: 110px 1fr; gap: 8px; }
+  .bar-label { font-size: 13px; }
+  .bar-label .sub { font-size: 8px; }
+  .option { padding: 28px 24px; }
+  .option .pros-cons { grid-template-columns: 1fr; }
+  .section-head { grid-template-columns: 1fr; gap: 4px; }
+  .section-head .meta { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ MASTHEAD ============ -->
+<div class="masthead">
+  <span class="vol">Vol. 01 — Field Notes</span>
+  <span>For: A Sister Headed East</span>
+  <span>2026 Edition</span>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div>
+    <div class="eyebrow">A Cost Comparison</div>
+    <h1>How much<br>to move <em>everything</em><br>3,000 miles east?</h1>
+    <p class="deck">Seven honest options for getting a household from the Bay Area to the Atlantic — what each one really costs in 2026, what you'll be doing yourself, and which to pick when.</p>
+  </div>
+  <div class="route-card">
+    <div>The Route</div>
+    <div class="route-line">
+      <span>SFO</span>
+      <span class="dots"></span>
+      <span>NYC</span>
+    </div>
+    <div class="meta">≈ 2,900 miles · 5–14 days transit</div>
+  </div>
+</section>
+
+<!-- ============ TLDR ============ -->
+<section class="tldr">
+  <div class="tldr-label">↓ The Short Answer</div>
+  <h2>Cheapest is a U-Haul truck and a long drive. Easiest is full-service movers. The sweet spot is a moving container.</h2>
+  <p>For a typical <strong>1–2 bedroom move</strong>, expect roughly <strong>$2,500 driving a rental truck yourself</strong>, <strong>$3,500–$6,000 for a moving container</strong> like PODS or U-Pack, and <strong>$6,000–$12,000+ for full-service movers</strong> who pack, load, drive, and unload.</p>
+  <p>If your sister is willing to ditch the furniture and just ship boxes, she can do the whole move for <strong>under $1,000</strong> via Greyhound's Busfreighter or LTL freight — and probably come out ahead even after buying a new couch on Craigslist when she lands.</p>
+</section>
+
+<!-- ============ CHART SECTION ============ -->
+<section>
+  <div class="section-head">
+    <span class="section-num">§ 01</span>
+    <h2>The cost spectrum, at a glance</h2>
+    <span class="meta">Typical 1–2 BR · SF → East Coast</span>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-axis">
+      <span class="tick" style="left: 0%;">$0</span>
+      <span class="tick" style="left: 20%;">$3K</span>
+      <span class="tick" style="left: 40%;">$6K</span>
+      <span class="tick" style="left: 60%;">$9K</span>
+      <span class="tick" style="left: 80%;">$12K</span>
+      <span class="tick" style="left: 100%;">$15K</span>
+    </div>
+
+    <!-- Scale: $0–$15,000, so each $1K = 6.667% -->
+
+    <div class="bar-row">
+      <div class="bar-label">Box-only freight<span class="sub">Busfreighter / LTL</span></div>
+      <div class="bar-track">
+        <div class="bar-fill cheap" style="left: 1.3%; width: 5.3%;">
+          <span class="bar-value">$200 – $1K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label">Minivan road trip<span class="sub">7 days, you drive</span></div>
+      <div class="bar-track">
+        <div class="bar-fill diy" style="left: 13.3%; width: 10%;">
+          <span class="bar-value">$2K – $3.5K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label">U-Haul rental truck<span class="sub">DIY drive</span></div>
+      <div class="bar-track">
+        <div class="bar-fill diy" style="left: 13.3%; width: 20%;">
+          <span class="bar-value">$2K – $5K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label">U-Box (U-Haul)<span class="sub">Wood container</span></div>
+      <div class="bar-track">
+        <div class="bar-fill container" style="left: 16.7%; width: 16.7%;">
+          <span class="bar-value">$2.5K – $5K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label">U-Pack ReloCube<span class="sub">Pay per linear foot</span></div>
+      <div class="bar-track">
+        <div class="bar-fill container" style="left: 20%; width: 23.3%;">
+          <span class="bar-value">$3K – $6.5K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label">PODS<span class="sub">Steel container</span></div>
+      <div class="bar-track">
+        <div class="bar-fill container" style="left: 23.3%; width: 30%;">
+          <span class="bar-value">$3.5K – $8K</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-label">Full-service movers<span class="sub">Allied, North American, etc.</span></div>
+      <div class="bar-track">
+        <div class="bar-fill movers" style="left: 30%; width: 70%;">
+          <span class="bar-value">$4.5K – $15K+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-note">Ranges reflect 1–2 BR moves · Costs scale up roughly 30–60% for 3+ BR · Summer months run 15–25% higher</div>
+  </div>
+</section>
+
+<!-- ============ OPTION CARDS ============ -->
+<section>
+  <div class="section-head">
+    <span class="section-num">§ 02</span>
+    <h2>The seven options, examined</h2>
+    <span class="meta">Ranked: cheap → convenient</span>
+  </div>
+
+  <div class="options-grid">
+
+    <!-- Option 1 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">i.</div>
+        <div class="option-tag">Cheapest<br><span class="stars">★ ★ ☆ ☆ ☆</span> Convenience</div>
+      </div>
+      <h3>Ship boxes only</h3>
+      <p class="who">For: minimalists & furniture-ditchers</p>
+      <div class="price">$200 – $1,000</div>
+      <div class="price-sub">≈ 5–15 boxes · No furniture</div>
+      <div class="brand-list">Busfreighter (Greyhound) · USPS · UPS · FedEx · uShip</div>
+      <p>The dirty secret of cross-country moving: if you sell your furniture and just ship clothes, books, and personal stuff, you can spend less on the entire move than on a single PODS delivery. Busfreighter quotes around $0.70/lb in bulk; five 40-lb boxes from SF to NYC ran about $160 in recent comparisons.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>By far the cheapest</li>
+            <li>No driving, no truck</li>
+            <li>Buy fresh in NYC</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>No furniture, period</li>
+            <li>Drop-off / pickup at depot</li>
+            <li>10–14 day transit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">ii.</div>
+        <div class="option-tag">Best for road-trippers<br><span class="stars">★ ★ ★ ☆ ☆</span> Convenience</div>
+      </div>
+      <h3>Rent a minivan, take a week</h3>
+      <p class="who">For: light loads + an actual scenic trip</p>
+      <div class="price">$2,000 – $3,500</div>
+      <div class="price-sub">7 days · ≈140 cu ft cargo (seats folded)</div>
+      <div class="brand-list">Enterprise · Sixt · Hertz · Budget · Avis</div>
+      <p>The civilized middle ground. A minivan with the seats folded swallows roughly 25–30 medium boxes plus a few soft items — about a studio's worth, give or take. One-way SF→NYC runs $700–$1,500 (rental + drop-off fee), plus ~$450 in gas, ~$700 in hotels for six nights, and ~$400 in food. Comfortable to drive, gets ~25 mpg, and you actually see the country instead of fighting a 26-foot box truck through Donner Pass.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Comfortable cross-country drive</li>
+            <li>Decent gas mileage</li>
+            <li>Sleep in real hotels</li>
+            <li>Fun, not punishing</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Holds far less than a truck</li>
+            <li>One-way fees can be steep</li>
+            <li>No furniture beyond a chair or two</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 3 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">iii.</div>
+        <div class="option-tag">Cheapest with furniture<br><span class="stars">★ ★ ☆ ☆ ☆</span> Convenience</div>
+      </div>
+      <h3>Rent a truck, drive it</h3>
+      <p class="who">For: road-trip enthusiasts on a budget</p>
+      <div class="price">$2,000 – $5,000</div>
+      <div class="price-sub">All-in: rental + fuel + hotels + food</div>
+      <div class="brand-list">U-Haul · Penske · Budget Truck</div>
+      <p>The classic. Base truck rental for a coast-to-coast one-way runs $1,500–$3,000 depending on size. Add roughly $700–$1,500 in fuel (these things drink), $400–$800 for 4–5 nights of hotels, plus food and tolls. Penske consistently rates higher than U-Haul for reliability and is often only $100–$300 more.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Maximum control</li>
+            <li>Cheapest with furniture</li>
+            <li>Arrive with your stuff</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>5+ days of hard driving</li>
+            <li>You load + unload</li>
+            <li>Mountain passes in winter</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 4 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">iv.</div>
+        <div class="option-tag">Best small-move container<br><span class="stars">★ ★ ★ ☆ ☆</span> Convenience</div>
+      </div>
+      <h3>U-Haul U-Box</h3>
+      <p class="who">For: studios & 1-bedrooms</p>
+      <div class="price">$2,500 – $5,000</div>
+      <div class="price-sub">≈ 1–2 containers · 8' wood crate</div>
+      <div class="brand-list">U-Haul U-Box (the budget container)</div>
+      <p>The cheapest of the door-to-door container services. Wood-frame containers, smaller than PODS (about a studio's worth each), but they get the job done for tight budgets. U-Haul drops them off, you pack, they drive them east, you unload. Real customer move from Mass→Minn for a 1-BR came in around $1,600.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>No driving</li>
+            <li>Cheapest container</li>
+            <li>Pack at your pace</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Smaller than PODS</li>
+            <li>Wood crates less durable</li>
+            <li>You still load + unload</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 5 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">v.</div>
+        <div class="option-tag">Most flexible pricing<br><span class="stars">★ ★ ★ ☆ ☆</span> Convenience</div>
+      </div>
+      <h3>U-Pack ReloCube / Trailer</h3>
+      <p class="who">For: in-between move sizes</p>
+      <div class="price">$3,000 – $6,500</div>
+      <div class="price-sub">Pay only for the linear feet you use</div>
+      <div class="brand-list">U-Pack (a service of ABF Freight)</div>
+      <p>U-Pack's secret weapon: with the trailer option you only pay for the space you actually fill, down to 5 linear feet. If a PODS quote feels like overkill but you have more than U-Box can hold, this is often the right answer. Average U-Pack move runs around $4,500 nationally — competitive with PODS for moves over 1,500 miles.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>Pay-per-foot pricing</li>
+            <li>3 days to load/unload</li>
+            <li>Faster than PODS often</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>No included storage</li>
+            <li>Less brand recognition</li>
+            <li>Trailer needs driveway</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 6 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">vi.</div>
+        <div class="option-tag">Most popular container<br><span class="stars">★ ★ ★ ★ ☆</span> Convenience</div>
+      </div>
+      <h3>PODS</h3>
+      <p class="who">For: 2-BR moves with some flexibility</p>
+      <div class="price">$3,500 – $8,000</div>
+      <div class="price-sub">8', 12', or 16' steel container</div>
+      <div class="brand-list">PODS · 1-800-PACK-RAT (similar service)</div>
+      <p>The household name for a reason. Steel-frame containers, included month of storage, well-oiled logistics. PODS drops one (or more) at your SF curb, you load over days or weeks, they ship it, you unload at the new place. National average around $3,810 — but coast-to-coast for a 2-BR pushes toward $5,500–$8,000.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>30 days storage included</li>
+            <li>Most reliable container co.</li>
+            <li>Sturdy steel build</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>Pricier than U-Pack</li>
+            <li>Pay for whole container</li>
+            <li>SF parking permit needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 7 -->
+    <div class="option">
+      <div class="option-head">
+        <div class="option-rank">vii.</div>
+        <div class="option-tag">Most expensive<br><span class="stars">★ ★ ★ ★ ★</span> Convenience</div>
+      </div>
+      <h3>Full-service movers</h3>
+      <p class="who">For: heavy furniture, no time, big budget</p>
+      <div class="price">$4,500 – $15,000+</div>
+      <div class="price-sub">SF→NYC avg: $10,346 for a 2–3 BR</div>
+      <div class="brand-list">Allied · North American · Mayflower · Atlas · United · Bekins</div>
+      <p>The white-glove option. They pack, load, drive, unload, and (for an extra fee) unpack. Priced by weight + distance: roughly $0.80/lb cross-country plus labor. Studio quotes start around $2,500; 2-BRs land near $5,000–$10,000; 3-BRs commonly hit $10,000–$15,000. Get three quotes — they vary wildly.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>Pros</h4>
+          <ul>
+            <li>You do almost nothing</li>
+            <li>Insurance included</li>
+            <li>Heavy items handled</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>Cons</h4>
+          <ul>
+            <li>2–4× container price</li>
+            <li>Watch for lowball quotes</li>
+            <li>Delivery window 1–14 days</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SCENARIOS ============ -->
+<section>
+  <div class="section-head">
+    <span class="section-num">§ 03</span>
+    <h2>So, which one should she pick?</h2>
+    <span class="meta">Three common scenarios</span>
+  </div>
+
+  <div class="scenarios">
+
+    <div class="scenario">
+      <svg class="scenario-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="20" width="40" height="28" stroke="#1c1d1f" stroke-width="1.5"/>
+        <path d="M8 28 L48 28" stroke="#1c1d1f" stroke-width="1.5"/>
+        <circle cx="28" cy="14" r="6" stroke="#c24226" stroke-width="1.5"/>
+        <path d="M22 18 L18 24 M34 18 L38 24" stroke="#1c1d1f" stroke-width="1.5"/>
+      </svg>
+      <h3>Studio / 1-BR, IKEA-grade furniture</h3>
+      <p class="when">Most common scenario for a renter</p>
+      <div class="pick">→ Recommended</div>
+      <div class="pick-name">Sell + ship boxes via Busfreighter</div>
+      <div class="est">Total: $400 – $1,200</div>
+      <p>Honestly, the math almost always favors selling the IKEA stuff on Facebook Marketplace, shipping clothes and books via Greyhound, and rebuying basics in NYC. You'll also save days of work loading furniture you'd just replace anyway.</p>
+    </div>
+
+    <div class="scenario">
+      <svg class="scenario-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="22" width="36" height="20" stroke="#1c1d1f" stroke-width="1.5"/>
+        <rect x="42" y="28" width="10" height="14" stroke="#1c1d1f" stroke-width="1.5"/>
+        <circle cx="14" cy="44" r="4" fill="#c24226"/>
+        <circle cx="44" cy="44" r="4" fill="#c24226"/>
+        <path d="M10 22 L10 16 L24 16 L24 22" stroke="#1c1d1f" stroke-width="1.5"/>
+      </svg>
+      <h3>1–2 BR with real furniture worth keeping</h3>
+      <p class="when">A few nice pieces, some sentimental items</p>
+      <div class="pick">→ Recommended</div>
+      <div class="pick-name">U-Pack ReloCube or PODS</div>
+      <div class="est">Total: $3,500 – $6,500</div>
+      <p>The container sweet spot. She loads it, professionals drive it, she unloads it. U-Pack tends to be slightly cheaper for cross-country; PODS gives the included storage month, useful if she's apartment-hunting on arrival.</p>
+    </div>
+
+    <div class="scenario">
+      <svg class="scenario-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 44 L46 44" stroke="#1c1d1f" stroke-width="1.5"/>
+        <path d="M14 44 L14 24 L28 14 L42 24 L42 44" stroke="#1c1d1f" stroke-width="1.5"/>
+        <rect x="20" y="30" width="6" height="14" fill="#c24226"/>
+        <rect x="30" y="30" width="6" height="8" stroke="#1c1d1f" stroke-width="1.5"/>
+      </svg>
+      <h3>Big house, antiques, white-glove needed</h3>
+      <p class="when">3+ BR, fragile heirlooms, no time</p>
+      <div class="pick">→ Recommended</div>
+      <div class="pick-name">Full-service van line</div>
+      <div class="est">Total: $9,000 – $15,000</div>
+      <p>If the inventory includes real furniture, art, or anything she'd cry about breaking, just pay the movers. Get three binding (not non-binding) estimates from FMCSA-licensed van lines. Allied, North American, and Mayflower are the safe bets.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TIPS ============ -->
+<section>
+  <div class="section-head">
+    <span class="section-num">§ 04</span>
+    <h2>Money-saving tactics, regardless of method</h2>
+    <span class="meta">Seven things that actually move the needle</span>
+  </div>
+
+  <div class="tips-grid">
+
+    <div class="tip">
+      <span class="tip-num">i.</span>
+      <h3>Move October through April</h3>
+      <p>Off-peak months run 15–25% cheaper. Movers are slow, prices drop, availability opens up. Avoid June–August at all costs.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">ii.</span>
+      <h3>Get three quotes, always</h3>
+      <p>Especially for full-service movers — quotes can vary by $3,000–$5,000 for the same job. Insist on binding (not "non-binding") estimates.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">iii.</span>
+      <h3>Verify the FMCSA license</h3>
+      <p>Interstate movers must register with the Federal Motor Carrier Safety Administration. Look up the USDOT number at fmcsa.dot.gov before signing.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">iv.</span>
+      <h3>Aggressively purge first</h3>
+      <p>You pay by weight or volume. Every box you don't ship is $50–$100 saved. Books, in particular, are heavy and cheap to replace at the library.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">v.</span>
+      <h3>Mid-month, mid-week</h3>
+      <p>The 1st, 15th, and last days of the month are the busiest for moves (lease turnover). Booking the 8th or 22nd, on a Tuesday, saves real money.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">vi.</span>
+      <h3>Reserve SF parking permits early</h3>
+      <p>SFMTA temporary moving permits are required and run $50–$150. Without one, the truck or container can't legally park, and you'll pay shuttle fees ($300–$500).</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-num">vii.</span>
+      <h3>Pack books in USPS Media Mail</h3>
+      <p>If she has a serious book collection, USPS Media Mail is roughly $4 per box. Don't pay full freight rates to ship paperbacks across the country.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <span>Sourced from MoveBuddha · Move.org · Allied · U-Pack · PODS · ExtraSpace · 2026 industry data</span>
+  <span class="end">— Safe travels eastward —</span>
+  <span>Vol. 01 · End</span>
+</footer>
+
+</div>
+</body>
+</html>

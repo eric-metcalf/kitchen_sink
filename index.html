@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eric's Kitchen Sink</title>
+<meta name="description" content="A small collection of one-off pages, decisions, and field notes by Eric.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f4efe4;
+  --paper-deep: #ebe4d4;
+  --ink: #1c1d1f;
+  --ink-soft: #4a4844;
+  --vermillion: #c24226;
+  --vermillion-deep: #8c2e1a;
+  --teal: #2f5d5c;
+  --gold: #b48a3c;
+  --rule: #d9d1bc;
+  --shadow: rgba(28, 29, 31, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-image:
+    radial-gradient(ellipse 800px 400px at 80% 0%, rgba(194, 66, 38, 0.04), transparent),
+    radial-gradient(ellipse 600px 600px at 0% 100%, rgba(47, 93, 92, 0.05), transparent);
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1000;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 60px 48px 120px;
+  position: relative;
+}
+
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+  margin-bottom: 64px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.masthead .vol { color: var(--vermillion); font-weight: 500; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 96px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--vermillion);
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  font-variation-settings: "opsz" 144;
+}
+
+h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--vermillion);
+}
+
+.deck {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  max-width: 560px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-variation-settings: "opsz" 36;
+}
+
+.stamp {
+  border: 1px solid var(--ink);
+  padding: 20px 24px;
+  background: var(--paper-deep);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  min-width: 220px;
+}
+
+.stamp .row { display: flex; justify-content: space-between; gap: 24px; margin: 6px 0; }
+.stamp .row .v { color: var(--ink); }
+.stamp .label-line {
+  border-top: 1px dashed var(--ink-soft);
+  margin: 12px 0 10px;
+}
+
+/* ============ SECTION HEADER ============ */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.section-head h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 72;
+}
+
+.section-head .count {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ============ ENTRY LIST ============ */
+.entries {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-bottom: 96px;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.18s ease, padding 0.18s ease;
+  position: relative;
+}
+
+.entry::after {
+  content: '→';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  color: var(--vermillion);
+  opacity: 0;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.entry:hover {
+  background: var(--paper-deep);
+  padding-left: 16px;
+  padding-right: 48px;
+}
+
+.entry:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(4px);
+}
+
+.entry .num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--vermillion);
+  font-weight: 500;
+}
+
+.entry .body h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  font-variation-settings: "opsz" 72;
+}
+
+.entry .body h3 em {
+  font-style: italic;
+  color: var(--vermillion);
+}
+
+.entry .body p {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 620px;
+}
+
+.entry .meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+  white-space: nowrap;
+  padding-right: 16px;
+}
+
+.entry .meta .tag {
+  display: inline-block;
+  border: 1px solid var(--ink-soft);
+  padding: 3px 8px;
+  margin-top: 6px;
+  color: var(--ink);
+}
+
+/* ============ COLOPHON ============ */
+.colophon {
+  margin-top: 96px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.colophon .label {
+  color: var(--vermillion);
+  margin-bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.colophon p {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 40px 24px 80px; }
+  .hero { grid-template-columns: 1fr; gap: 32px; margin-bottom: 64px; }
+  .stamp { min-width: 0; }
+  .entry { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  .entry .meta { text-align: left; }
+  .entry::after { display: none; }
+  .entry:hover { padding-left: 0; padding-right: 0; }
+  .colophon { grid-template-columns: 1fr; gap: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div><span class="vol">Vol. 01</span> &nbsp;·&nbsp; A Working Archive</div>
+    <div>Eric Metcalf</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Index of curiosities</div>
+      <h1>Eric's <em>Kitchen Sink</em></h1>
+      <p class="deck">A small, growing collection of pages I've made to think things through — comparisons, field notes, and decisions worth holding still long enough to look at.</p>
+    </div>
+    <div class="stamp">
+      <div class="row"><span>Status</span><span class="v">Open</span></div>
+      <div class="row"><span>Format</span><span class="v">HTML</span></div>
+      <div class="label-line"></div>
+      <div class="row"><span>Entries</span><span class="v">01</span></div>
+      <div class="row"><span>Updated</span><span class="v">2026·04</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>The Collection</h2>
+      <div class="count">01 entry</div>
+    </div>
+
+    <div class="entries">
+
+      <a class="entry" href="pages/moving-cost-comparison.html">
+        <div class="num">№ 01</div>
+        <div class="body">
+          <h3>SF → East Coast: A <em>Moving Cost</em> Field Guide</h3>
+          <p>What it actually costs to move across the country, broken down honestly — including the line items the quotes never mention.</p>
+        </div>
+        <div class="meta">
+          2026 · 04<br>
+          <span class="tag">Decision</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <div>
+      <div class="label">Colophon</div>
+      <p>Set in Fraunces &amp; DM Mono. Written, hosted, and lightly maintained on GitHub Pages. Each entry is a single self-contained HTML file — link-shareable and outliving the tab.</p>
+    </div>
+    <div>
+      <div class="label">Contact</div>
+      <p>If something here is useful — or wrong — say so. <br>This is a working archive, not a finished one.</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
