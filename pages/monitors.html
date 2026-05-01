@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>32" 4K USB-C Monitors — A Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1014;
+    --bg-elev: #161a20;
+    --bg-elev-2: #1d2229;
+    --line: #2a3038;
+    --line-soft: #1f242b;
+    --ink: #ece6d8;
+    --ink-dim: #a8a194;
+    --ink-faint: #6b6759;
+    --accent: #d4a574;
+    --accent-bright: #e8b988;
+    --good: #7cb88a;
+    --warn: #d49a5c;
+    --bad: #b85c5c;
+    --neutral: #6b6759;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(212, 165, 116, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(124, 184, 138, 0.03) 0%, transparent 50%);
+  }
+
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    font-variation-settings: "SOFT" 50, "opsz" 144;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: 15px;
+    color: var(--ink-dim);
+    max-width: 620px;
+    line-height: 1.6;
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 14px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+  }
+
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .control-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-right: 4px;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    padding: 6px 11px;
+    border-radius: 999px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .chip:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+
+  .chip.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    font-weight: 500;
+  }
+
+  /* CARDS */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 720px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1080px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 24px;
+    position: relative;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    border-color: var(--line);
+    transform: translateY(-2px);
+  }
+
+  .card.pick {
+    border-color: var(--accent);
+  }
+
+  .card.pick::before {
+    content: 'EDITOR\'S PICK';
+    position: absolute;
+    top: -1px;
+    right: 16px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+    border-radius: 0 0 3px 3px;
+    font-weight: 500;
+  }
+
+  .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+
+  .name {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.45rem;
+    line-height: 1.15;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .model {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  .price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .price-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 1.8rem;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144;
+  }
+
+  .price-range {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+  }
+
+  .specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 12px;
+    margin-bottom: 18px;
+  }
+
+  .spec {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .spec-value {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .spec-value.warn {
+    color: var(--bad);
+    opacity: 0.85;
+  }
+
+  .spec-value.highlight {
+    color: var(--accent-bright);
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+  }
+
+  .feature-icon {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .feature-icon.yes { color: var(--good); }
+  .feature-icon.no { color: var(--bad); opacity: 0.6; }
+  .feature-icon.partial { color: var(--warn); }
+
+  .feature-text {
+    color: var(--ink-dim);
+  }
+
+  .feature.no .feature-text {
+    color: var(--ink-faint);
+    text-decoration: line-through;
+    text-decoration-color: var(--line);
+  }
+
+  .verdict {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-soft);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-dim);
+  }
+
+  .verdict::before {
+    content: '"';
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 0;
+    position: relative;
+    top: 8px;
+    margin-right: 4px;
+  }
+
+  /* RETAILER BADGES */
+  .retailers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .retailer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .retailer.notcarried {
+    color: var(--ink-faint);
+    border-color: var(--line-soft);
+    opacity: 0.7;
+  }
+
+  .retailer.notcarried::before {
+    content: '○';
+    color: var(--bad);
+    opacity: 0.6;
+  }
+
+  .retailer.available::before {
+    content: '●';
+    color: var(--good);
+  }
+
+  .retailer.local {
+    color: var(--accent-bright);
+    border-color: var(--accent);
+    background: rgba(212, 165, 116, 0.06);
+  }
+
+  .retailer.local::before {
+    content: '◆';
+    color: var(--accent);
+  }
+
+  /* MICRO CENTER NOTE */
+  .mc-note {
+    margin-top: 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line-soft);
+    border-left: 2px solid var(--accent);
+    border-radius: 3px;
+    padding: 18px 20px;
+  }
+
+  .mc-note-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .mc-note-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .mc-note-body {
+    font-size: 13.5px;
+    color: var(--ink-dim);
+    line-height: 1.6;
+  }
+
+  .mc-note-body strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* TABLE TOGGLE */
+  .view-toggle {
+    margin-left: auto;
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .view-btn {
+    background: transparent;
+    border: none;
+    color: var(--ink-faint);
+    padding: 6px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .view-btn.active {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  /* TABLE VIEW */
+  .table-view {
+    display: none;
+    overflow-x: auto;
+    margin-top: 8px;
+  }
+
+  .table-view table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    min-width: 880px;
+  }
+
+  .table-view th {
+    text-align: left;
+    padding: 14px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 400;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elev);
+    position: sticky;
+    top: 0;
+  }
+
+  .table-view td {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--ink-dim);
+    vertical-align: top;
+  }
+
+  .table-view tr:hover td {
+    background: var(--bg-elev);
+    color: var(--ink);
+  }
+
+  .table-view .product-name {
+    font-family: 'Fraunces', serif;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .table-view .product-model {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .table-view .price-cell {
+    font-family: 'Fraunces', serif;
+    color: var(--ink);
+    font-size: 14px;
+  }
+
+  .yes-icon { color: var(--good); }
+  .no-icon { color: var(--bad); opacity: 0.5; }
+
+  /* FOOTER */
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card {
+    animation: fadeUp 0.4s ease backwards;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.3s; }
+  .card:nth-child(7) { animation-delay: 0.35s; }
+  .card:nth-child(8) { animation-delay: 0.4s; }
+  .card:nth-child(9) { animation-delay: 0.45s; }
+  .card:nth-child(10) { animation-delay: 0.5s; }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Comparison · April 2026</div>
+  <h1>32-inch 4K monitors with <em>USB-C hubs</em></h1>
+  <p class="lede">Ten 31.5" 4K displays compared. Nine are USB-C hub monitors offering single-cable laptop docking; one (the S3225QS) is a pure display included as a price reference. The differences live in panel tech, connectivity, and color credentials.</p>
+</header>
+
+<div class="controls">
+  <div class="control-group">
+    <span class="control-label">Filter</span>
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="ethernet">Has Ethernet</button>
+    <button class="chip" data-filter="ipsblack">IPS Black</button>
+    <button class="chip" data-filter="calibrated">Factory calibrated</button>
+    <button class="chip" data-filter="thunderbolt">Thunderbolt</button>
+    <button class="chip" data-filter="microcenter">At Micro Center</button>
+    <button class="chip" data-filter="costco">At Costco</button>
+    <button class="chip" data-filter="under700">Under $700</button>
+  </div>
+  <div class="view-toggle">
+    <button class="view-btn active" data-view="cards">Cards</button>
+    <button class="view-btn" data-view="table">Table</button>
+  </div>
+</div>
+
+<!-- CARD VIEW -->
+<div class="grid" id="card-view">
+
+  <!-- Dell P3225QE -->
+  <div class="card" data-tags="ethernet under700">
+    <div class="brand">Dell · Pro Plus</div>
+    <div class="name">Pro 32 Plus 4K USB-C Hub</div>
+    <div class="model">P3225QE</div>
+    <div class="price">
+      <span class="price-num">$557</span>
+      <span class="price-range">$490–$650</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">Dell</span>
+      <span class="retailer local">Best Buy</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer notcarried">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value">IPS</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value highlight">100 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">1500:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">350 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">99% sRGB</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">90W</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Built-in Gigabit Ethernet</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">USB-A ×3, USB-C downstream</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Thunderbolt</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Factory calibration cert</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">HDR</span></div>
+    </div>
+    <div class="verdict">The value play in Dell's lineup. Solid hub, Ethernet, and 100 Hz at the lowest price in the group.</div>
+  </div>
+
+  <!-- Dell U3225QE -->
+  <div class="card pick" data-tags="ethernet ipsblack thunderbolt calibrated">
+    <div class="brand">Dell · UltraSharp</div>
+    <div class="name">UltraSharp 32 4K Thunderbolt Hub</div>
+    <div class="model">U3225QE</div>
+    <div class="price">
+      <span class="price-num">$949</span>
+      <span class="price-range">$850–$1,050</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">Dell</span>
+      <span class="retailer local">Best Buy</span>
+      <span class="retailer available">B&amp;H</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer notcarried">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value highlight">IPS Black</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value highlight">120 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value highlight">3000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value highlight">600 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">99% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value highlight">140W (TB4)</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Thunderbolt 4 with passthrough</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">2.5 Gigabit Ethernet</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">DisplayHDR 600</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Factory calibrated, ΔE&lt;1.5</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Ambient light sensor, KVM</span></div>
+    </div>
+    <div class="verdict">The flagship all-rounder. Best contrast, fastest refresh, biggest hub. The one to get if budget allows.</div>
+  </div>
+
+  <!-- BenQ PD3225U -->
+  <div class="card" data-tags="ipsblack thunderbolt calibrated">
+    <div class="brand">BenQ · DesignVue</div>
+    <div class="name">PD3225U Thunderbolt Mac-Ready</div>
+    <div class="model">PD3225U</div>
+    <div class="price">
+      <span class="price-num">$899</span>
+      <span class="price-range">$850–$1,000</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">BenQ</span>
+      <span class="retailer local">Best Buy</span>
+      <span class="retailer available">B&amp;H</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer notcarried">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value highlight">IPS Black</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value">60 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">2000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">400 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">98% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">85W (TB3)</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Thunderbolt 3 + daisy-chain</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Ethernet</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">DisplayHDR 400</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Calman Verified, ΔE≤2</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">M-book mode for Mac, Hotkey Puck, KVM</span></div>
+    </div>
+    <div class="verdict">The Mac/designer pick. Pantone-validated color and macOS-tuned ergonomics; weakest at 60 Hz only.</div>
+  </div>
+
+  <!-- BenQ PD3220U -->
+  <div class="card" data-tags="thunderbolt calibrated microcenter">
+    <div class="brand">BenQ · DesignVue</div>
+    <div class="name">PD3220U Thunderbolt 3 Designer</div>
+    <div class="model">PD3220U</div>
+    <div class="price">
+      <span class="price-num">$1,000</span>
+      <span class="price-range">$900–$1,200</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">BenQ</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer local">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value">IPS</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value">60 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">1000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">300 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">95% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">85W (TB3)</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Dual Thunderbolt 3 + daisy-chain</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Ethernet</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">HDR10</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Calman Verified + Pantone, ΔE≤3</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Hotkey Puck G2, M-book, KVM</span></div>
+    </div>
+    <div class="verdict">The previous-gen PD3225U. Older 2018 design, no IPS Black, dimmer panel — but it's the only one of these six actually at Micro Center.</div>
+  </div>
+
+  <!-- ASUS ProArt PA329CRV -->
+  <div class="card" data-tags="calibrated">
+    <div class="brand">ASUS · ProArt</div>
+    <div class="name">ProArt Display PA329CRV</div>
+    <div class="model">PA329CRV</div>
+    <div class="price">
+      <span class="price-num">$699</span>
+      <span class="price-range">$600–$800</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">ASUS</span>
+      <span class="retailer available">B&amp;H</span>
+      <span class="retailer available">Newegg</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer notcarried">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value">IPS</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value">60 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">1000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">400 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">98% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">96W</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">USB-A ×3, USB-C downstream</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Ethernet</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">DisplayHDR 400</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Calman Verified, ΔE&lt;2</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">DP daisy-chain (MST)</span></div>
+    </div>
+    <div class="verdict">Color-accurate middle ground. Photo-editor friendly without BenQ pricing — but no Ethernet.</div>
+  </div>
+
+  <!-- Samsung S80UD -->
+  <div class="card" data-tags="ethernet under700">
+    <div class="brand">Samsung · ViewFinity</div>
+    <div class="name">ViewFinity S8 (S80UD)</div>
+    <div class="model">LS32D804UANXGO</div>
+    <div class="price">
+      <span class="price-num">$450</span>
+      <span class="price-range">$380–$500</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">Samsung</span>
+      <span class="retailer local">Best Buy</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer available">Walmart</span>
+      <span class="retailer notcarried">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value">IPS</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value">60 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">1000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">350 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">99% sRGB</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">90W</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Built-in LAN port</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">USB-A ×2 hub</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">HDR10</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Factory calibration cert</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Built-in KVM switch</span></div>
+    </div>
+    <div class="verdict">The budget specialist. Closest spec-for-spec match to the P3225QE, but cheaper. No color credentials.</div>
+  </div>
+
+  <!-- Dell S3225QC (Costco pick) -->
+  <div class="card" data-tags="under700 costco">
+    <div class="brand">Dell · 32 Plus</div>
+    <div class="name">32 Plus 4K QD-OLED Monitor</div>
+    <div class="model">S3225QC</div>
+    <div class="price">
+      <span class="price-num">$450</span>
+      <span class="price-range">$350–$500 at Costco</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer local">Costco</span>
+      <span class="retailer available">Dell</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer local">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value highlight">QD-OLED</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value highlight">120 Hz</span></div>
+      <div class="spec"><span class="spec-label">Response</span><span class="spec-value highlight">0.03 ms</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">HDR TB 400</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">99% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">90W</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Dolby Vision + HDR True Black 400</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">USB-C 90W + 2× USB-C downstream</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Ethernet</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">5-speaker AI 3D spatial audio</span></div>
+      <div class="feature"><span class="feature-icon partial">~</span><span class="feature-text">FreeSync Premium Pro (gaming-leaning)</span></div>
+    </div>
+    <div class="verdict">The Costco wildcard. QD-OLED at this price is shocking — perfect blacks, 120 Hz, instant response. No Ethernet, leans gaming/media over pro. Watch for OLED burn-in over time.</div>
+  </div>
+
+  <!-- Dell U3223QZ -->
+  <div class="card" data-tags="ethernet ipsblack calibrated costco">
+    <div class="brand">Dell · UltraSharp</div>
+    <div class="name">UltraSharp 32 4K Video Conferencing</div>
+    <div class="model">U3223QZ</div>
+    <div class="price">
+      <span class="price-num">~$900</span>
+      <span class="price-range">In-warehouse pricing</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">Costco</span>
+      <span class="retailer available">Dell</span>
+      <span class="retailer available">B&amp;H</span>
+      <span class="retailer available">Amazon</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value highlight">IPS Black</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value">60 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">2000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">400 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">98% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">90W</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Built-in 4K Sony Starvis webcam</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Gigabit Ethernet + USB-A hub</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Dual 14W speakers + array mics</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">DisplayHDR 400, ΔE&lt;2, MS Teams certified</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">KVM + Dell ExpressSign-in</span></div>
+    </div>
+    <div class="verdict">The U3223QE's video-conferencing twin. Same IPS Black panel and Ethernet, plus an integrated 4K webcam and speakers. MSRP $1,599 — but Costco often has it well below that.</div>
+  </div>
+
+  <!-- LG 32UN880 Ergo -->
+  <div class="card" data-tags="costco">
+    <div class="brand">LG · UltraFine</div>
+    <div class="name">32" UltraFine Ergo with C-Clamp</div>
+    <div class="model">32UN880-B</div>
+    <div class="price">
+      <span class="price-num">$500</span>
+      <span class="price-range">$450–$700</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer local">Costco</span>
+      <span class="retailer available">LG</span>
+      <span class="retailer local">Best Buy</span>
+      <span class="retailer available">B&amp;H</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value">IPS</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value">60 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value">1000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">350 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">95% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value">60W</span></div>
+    </div>
+    <div class="features">
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">ErgoStand with C-clamp (no base)</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">Extend / retract / swivel / pivot</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">USB-A hub, AMD FreeSync, HDR10</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Ethernet</span></div>
+      <div class="feature"><span class="feature-icon partial">~</span><span class="feature-text">60W PD only (lower than competitors)</span></div>
+    </div>
+    <div class="verdict">The desk-clamp option. Skips a footed base entirely — clamps to the desk edge for maximum reclaim. Older 2020 model, weakest USB-C wattage of the group.</div>
+  </div>
+
+  <!-- Dell S3225QS -->
+  <div class="card" data-tags="under700 nohub">
+    <div class="brand">Dell · 32 Plus</div>
+    <div class="name">32 Plus 4K VA Monitor</div>
+    <div class="model">S3225QS</div>
+    <div class="price">
+      <span class="price-num">$280</span>
+      <span class="price-range">$280–$380</span>
+    </div>
+    <div class="retailers">
+      <span class="retailer available">Dell</span>
+      <span class="retailer local">Best Buy</span>
+      <span class="retailer available">Amazon</span>
+      <span class="retailer local">Micro Center</span>
+    </div>
+    <div class="specs">
+      <div class="spec"><span class="spec-label">Panel</span><span class="spec-value">VA</span></div>
+      <div class="spec"><span class="spec-label">Refresh</span><span class="spec-value highlight">120 Hz</span></div>
+      <div class="spec"><span class="spec-label">Contrast</span><span class="spec-value highlight">3000:1</span></div>
+      <div class="spec"><span class="spec-label">Brightness</span><span class="spec-value">300 nits</span></div>
+      <div class="spec"><span class="spec-label">Color Gamut</span><span class="spec-value">95% DCI-P3</span></div>
+      <div class="spec"><span class="spec-label">USB-C PD</span><span class="spec-value warn">None</span></div>
+    </div>
+    <div class="features">
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">No USB-C hub — HDMI/DP only</span></div>
+      <div class="feature no"><span class="feature-icon no">✕</span><span class="feature-text">Zero USB ports (no hub at all)</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">2× HDMI 2.1 + DisplayPort 1.4</span></div>
+      <div class="feature"><span class="feature-icon yes">✓</span><span class="feature-text">FreeSync Premium, HDR ready</span></div>
+      <div class="feature"><span class="feature-icon partial">~</span><span class="feature-text">Tilt only — no swivel/pivot</span></div>
+    </div>
+    <div class="verdict">The pure-display anomaly. At $280, the cheapest 32" 4K 120 Hz with VA contrast — but no USB-C dock. Pair with a separate hub if you need ports; skip entirely if you wanted single-cable laptop charging.</div>
+  </div>
+
+</div>
+
+<!-- TABLE VIEW -->
+<div class="table-view" id="table-view">
+  <table>
+    <thead>
+      <tr>
+        <th>Monitor</th>
+        <th>Price</th>
+        <th>Panel</th>
+        <th>Refresh</th>
+        <th>Contrast</th>
+        <th>Brightness</th>
+        <th>Gamut</th>
+        <th>PD</th>
+        <th>TB</th>
+        <th>Ethernet</th>
+        <th>HDR</th>
+        <th>Calibrated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="product-name">Dell Pro 32 Plus</div><div class="product-model">P3225QE</div></td>
+        <td class="price-cell">$557</td>
+        <td>IPS</td>
+        <td>100 Hz</td>
+        <td>1500:1</td>
+        <td>350 nits</td>
+        <td>99% sRGB</td>
+        <td>90W</td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">1 GbE</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="no-icon">—</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">Dell UltraSharp 32</div><div class="product-model">U3225QE</div></td>
+        <td class="price-cell">$949</td>
+        <td>IPS Black</td>
+        <td>120 Hz</td>
+        <td>3000:1</td>
+        <td>600 nits</td>
+        <td>99% DCI-P3</td>
+        <td>140W</td>
+        <td><span class="yes-icon">TB4</span></td>
+        <td><span class="yes-icon">2.5 GbE</span></td>
+        <td><span class="yes-icon">HDR 600</span></td>
+        <td><span class="yes-icon">ΔE&lt;1.5</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">BenQ PD3225U</div><div class="product-model">PD3225U</div></td>
+        <td class="price-cell">$899</td>
+        <td>IPS Black</td>
+        <td>60 Hz</td>
+        <td>2000:1</td>
+        <td>400 nits</td>
+        <td>98% DCI-P3</td>
+        <td>85W</td>
+        <td><span class="yes-icon">TB3</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">HDR 400</span></td>
+        <td><span class="yes-icon">ΔE≤2</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">BenQ PD3220U</div><div class="product-model">PD3220U · MC</div></td>
+        <td class="price-cell">$1,000</td>
+        <td>IPS</td>
+        <td>60 Hz</td>
+        <td>1000:1</td>
+        <td>300 nits</td>
+        <td>95% DCI-P3</td>
+        <td>85W</td>
+        <td><span class="yes-icon">TB3</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">HDR 10</span></td>
+        <td><span class="yes-icon">ΔE≤3</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">ASUS ProArt</div><div class="product-model">PA329CRV</div></td>
+        <td class="price-cell">$699</td>
+        <td>IPS</td>
+        <td>60 Hz</td>
+        <td>1000:1</td>
+        <td>400 nits</td>
+        <td>98% DCI-P3</td>
+        <td>96W</td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">HDR 400</span></td>
+        <td><span class="yes-icon">ΔE&lt;2</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">Samsung ViewFinity S8</div><div class="product-model">S80UD</div></td>
+        <td class="price-cell">$450</td>
+        <td>IPS</td>
+        <td>60 Hz</td>
+        <td>1000:1</td>
+        <td>350 nits</td>
+        <td>99% sRGB</td>
+        <td>90W</td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">1 GbE</span></td>
+        <td><span class="yes-icon">HDR 10</span></td>
+        <td><span class="no-icon">—</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">Dell 32 Plus QD-OLED</div><div class="product-model">S3225QC · Costco</div></td>
+        <td class="price-cell">$450</td>
+        <td>QD-OLED</td>
+        <td>120 Hz</td>
+        <td>∞ (OLED)</td>
+        <td>HDR TB 400</td>
+        <td>99% DCI-P3</td>
+        <td>90W</td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">Dolby Vision</span></td>
+        <td><span class="no-icon">—</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">Dell U3223QZ</div><div class="product-model">U3223QZ · Costco</div></td>
+        <td class="price-cell">~$900</td>
+        <td>IPS Black</td>
+        <td>60 Hz</td>
+        <td>2000:1</td>
+        <td>400 nits</td>
+        <td>98% DCI-P3</td>
+        <td>90W</td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">1 GbE</span></td>
+        <td><span class="yes-icon">HDR 400</span></td>
+        <td><span class="yes-icon">ΔE&lt;2</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">LG UltraFine Ergo</div><div class="product-model">32UN880-B · Costco</div></td>
+        <td class="price-cell">$500</td>
+        <td>IPS</td>
+        <td>60 Hz</td>
+        <td>1000:1</td>
+        <td>350 nits</td>
+        <td>95% DCI-P3</td>
+        <td>60W</td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">HDR 10</span></td>
+        <td><span class="no-icon">—</span></td>
+      </tr>
+      <tr>
+        <td><div class="product-name">Dell 32 Plus VA</div><div class="product-model">S3225QS · No hub</div></td>
+        <td class="price-cell">$280</td>
+        <td>VA</td>
+        <td>120 Hz</td>
+        <td>3000:1</td>
+        <td>300 nits</td>
+        <td>95% DCI-P3</td>
+        <td><span class="no-icon">None</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="no-icon">—</span></td>
+        <td><span class="yes-icon">HDR ready</span></td>
+        <td><span class="no-icon">—</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="mc-note">
+  <div class="mc-note-eyebrow">Bay Area In-Store Pickup</div>
+  <div class="mc-note-title">Eight of nine can be picked up locally.</div>
+  <div class="mc-note-body">
+    Retailer badges marked with a <strong style="color: var(--accent);">◆</strong> indicate Bay Area physical stores where you can see or collect the monitor today. Three local retailers cover almost everything on this list:<br><br>
+    <strong>Best Buy</strong> (multiple Bay Area locations including Cupertino, Sunnyvale, Mountain View, San Jose) carries the Dell P3225QE, U3225QE, BenQ PD3225U, Samsung S80UD, and LG 32UN880. Best for the new Dell UltraSharp/Pro and Samsung models — call ahead since stock varies by store.<br><br>
+    <strong>Costco</strong> (Santa Clara, Sunnyvale, Mountain View, etc., membership required) carries the Dell S3225QC QD-OLED, Dell U3223QZ video conferencing, and LG 32UN880 ErgoStand. Online prices for the U3223QZ are warehouse-only — phone the store for exact pricing.<br><br>
+    <strong>Micro Center Santa Clara</strong> (5201 Stevens Creek Blvd) carries the BenQ PD3220U and Dell S3225QC. Member pricing requires free account sign-in.<br><br>
+    The only one with no Bay Area pickup is the <strong>ASUS ProArt PA329CRV</strong> — that's online-order only via ASUS, B&amp;H, Newegg, or Amazon.
+  </div>
+</div>
+
+<footer>
+  <div>PRICES VERIFIED · APR 2026</div>
+  <div>SOURCES · DELL · BEST BUY · B&amp;H · AMAZON · SAMSUNG</div>
+</footer>
+
+</div>
+
+<script>
+  // Filter chips
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.card');
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          const tags = (card.dataset.tags || '').split(' ');
+          if (tags.includes(filter)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        }
+      });
+    });
+  });
+
+  // View toggle
+  const viewBtns = document.querySelectorAll('.view-btn');
+  const cardView = document.getElementById('card-view');
+  const tableView = document.getElementById('table-view');
+
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (btn.dataset.view === 'cards') {
+        cardView.style.display = 'grid';
+        tableView.style.display = 'none';
+      } else {
+        cardView.style.display = 'none';
+        tableView.style.display = 'block';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
