@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SF → NYC: Road Trip Itinerary · May 28 – June 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f4efe4;
+  --paper-deep: #ebe4d4;
+  --ink: #1c1d1f;
+  --ink-soft: #4a4844;
+  --vermillion: #c24226;
+  --vermillion-deep: #8c2e1a;
+  --teal: #2f5d5c;
+  --gold: #b48a3c;
+  --rule: #d9d1bc;
+  --shadow: rgba(28, 29, 31, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-image:
+    radial-gradient(ellipse 800px 400px at 80% 0%, rgba(194, 66, 38, 0.04), transparent),
+    radial-gradient(ellipse 600px 600px at 0% 100%, rgba(47, 93, 92, 0.05), transparent);
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1000;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 60px 48px 120px;
+  position: relative;
+}
+
+/* ============ MASTHEAD ============ */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+  margin-bottom: 48px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.masthead .vol { color: var(--vermillion); font-weight: 500; }
+
+.masthead a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.masthead a:hover { color: var(--vermillion); }
+
+/* ============ HERO ============ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 72px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--vermillion);
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 144;
+}
+
+h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--vermillion);
+}
+
+.deck {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 560px;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-variation-settings: "opsz" 36;
+}
+
+/* ============ STATS CARD ============ */
+.stats-card {
+  border: 1px solid var(--ink);
+  padding: 28px 32px;
+  background: var(--paper-deep);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-width: 260px;
+}
+
+.stats-card .stat-label {
+  color: var(--ink-soft);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  margin-bottom: 4px;
+}
+
+.stats-card .stat-val {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72;
+  margin-bottom: 18px;
+  line-height: 1;
+}
+
+.stats-card .stat-val em {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-left: 4px;
+}
+
+.stats-divider {
+  border: none;
+  border-top: 1px dashed var(--rule);
+  margin: 6px 0 18px;
+}
+
+/* ============ PROGRESS RIBBON ============ */
+.progress-ribbon {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  margin-bottom: 80px;
+}
+
+.ribbon-day {
+  background: var(--paper);
+  padding: 16px 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
+  display: block;
+}
+
+.ribbon-day:hover {
+  background: var(--paper-deep);
+}
+
+.ribbon-day .rd-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 6px;
+}
+
+.ribbon-day .rd-date {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.ribbon-day .rd-route {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.ribbon-day .rd-miles {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  margin-top: 8px;
+}
+
+/* ============ DAY CARDS ============ */
+.day-section {
+  margin-bottom: 64px;
+  scroll-margin-top: 32px;
+}
+
+.day-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.day-num {
+  font-family: 'Fraunces', serif;
+  font-size: 56px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--vermillion);
+  line-height: 0.9;
+  font-variation-settings: "opsz" 144;
+}
+
+.day-title-block {}
+
+.day-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 6px;
+}
+
+.day-route-line {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.day-route-line .arrow {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.8em;
+  margin: 0 8px;
+}
+
+.day-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+  line-height: 1.8;
+}
+
+.day-meta .highlight {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.day-body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ============ STOPS ============ */
+.stops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.stop {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  position: relative;
+}
+
+.stop-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.stop-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.stop-dot.origin {
+  background: var(--vermillion);
+  border-color: var(--vermillion);
+  width: 14px;
+  height: 14px;
+}
+
+.stop-dot.waypoint {
+  border-color: var(--gold);
+  background: var(--paper);
+}
+
+.stop-dot.destination {
+  background: var(--teal);
+  border-color: var(--teal);
+  width: 14px;
+  height: 14px;
+}
+
+.stop-line {
+  flex: 1;
+  width: 2px;
+  background: var(--rule);
+  margin: 3px 0;
+  min-height: 24px;
+}
+
+.stop:last-child .stop-line { display: none; }
+
+.stop-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 0;
+  line-height: 1.3;
+}
+
+.stop-content {
+  padding-bottom: 28px;
+  padding-left: 16px;
+}
+
+.stop-city {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.stop-city .state {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  font-weight: 400;
+  margin-left: 6px;
+  text-transform: uppercase;
+}
+
+.stop-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 8px;
+}
+
+.stop-type.waypoint-label { color: var(--gold); }
+.stop-type.destination-label { color: var(--teal); }
+
+.stop-note {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 520px;
+}
+
+.stop-note strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ============ DAY SIDEBAR ============ */
+.day-sidebar {}
+
+.sidebar-block {
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.sidebar-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 12px;
+}
+
+.sidebar-block h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.sidebar-block p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.stat-row:last-child { border-bottom: none; }
+
+.stat-row .sk { color: var(--ink-soft); text-transform: uppercase; font-size: 10px; letter-spacing: 0.12em; }
+.stat-row .sv { color: var(--ink); font-weight: 500; }
+.stat-row .sv.green { color: var(--teal); }
+.stat-row .sv.red { color: var(--vermillion); }
+
+.road-condition {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.road-condition:last-child { border-bottom: none; padding-bottom: 0; }
+.road-condition .icon { flex-shrink: 0; color: var(--gold); font-style: normal; }
+
+/* ============ SECTION DIVIDER ============ */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0 0 64px;
+}
+
+/* ============ SUMMARY TABLE ============ */
+.summary-section {
+  margin-top: 96px;
+}
+
+.summary-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.summary-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--vermillion);
+}
+
+.summary-head h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.summary-head .meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+}
+
+.summary-table thead tr {
+  border-bottom: 2px solid var(--ink);
+}
+
+.summary-table th {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 10px 16px 10px 0;
+  text-align: left;
+  font-weight: 500;
+}
+
+.summary-table th:last-child { text-align: right; }
+
+.summary-table tbody tr {
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.12s ease;
+}
+
+.summary-table tbody tr:hover { background: var(--paper-deep); }
+
+.summary-table td {
+  padding: 14px 16px 14px 0;
+  vertical-align: baseline;
+  color: var(--ink-soft);
+}
+
+.summary-table td:first-child {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--vermillion);
+  font-variation-settings: "opsz" 36;
+  white-space: nowrap;
+  width: 72px;
+}
+
+.summary-table .route-cell {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.summary-table .miles-cell {
+  color: var(--teal);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.summary-table .time-cell { white-space: nowrap; }
+
+.summary-table .highlight-cell {
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.summary-table .total-row {
+  border-top: 2px solid var(--ink);
+  border-bottom: none;
+  background: var(--paper-deep) !important;
+}
+
+.summary-table .total-row td {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.summary-table .total-row td:first-child {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  font-weight: 500;
+}
+
+.summary-table .total-row .miles-cell {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72;
+}
+
+/* ============ PACKING NOTE ============ */
+.packing-note {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 40px 48px;
+  margin-top: 32px;
+  border-radius: 2px;
+}
+
+.packing-note .pn-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 16px;
+}
+
+.packing-note h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.packing-note-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(244, 239, 228, 0.15);
+}
+
+.pn-col .pn-col-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.pn-col ul {
+  list-style: none;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(244, 239, 228, 0.8);
+}
+
+.pn-col li {
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.pn-col li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--vermillion);
+  font-size: 10px;
+}
+
+/* ============ FOOTER ============ */
+footer {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+footer .end {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+footer a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+footer a:hover { color: var(--vermillion); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .day-body { grid-template-columns: 1fr; }
+  .day-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .sidebar-block { margin-bottom: 0; }
+  .packing-note-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 32px 20px 80px; }
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+  .stats-card { min-width: 0; }
+  .progress-ribbon { grid-template-columns: repeat(3, 1fr); }
+  .day-header { grid-template-columns: auto 1fr; }
+  .day-meta { display: none; }
+  .stop { grid-template-columns: 56px 1fr; }
+  .day-sidebar { grid-template-columns: 1fr; }
+  .summary-table th:nth-child(4),
+  .summary-table td:nth-child(4) { display: none; }
+  .packing-note { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ MASTHEAD ============ -->
+<div class="masthead">
+  <span class="vol">Vol. 01 — Field Notes</span>
+  <span><a href="moving-cost-comparison.html">← Cost Breakdown</a></span>
+  <span>May 28 – June 2, 2026</span>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div>
+    <div class="eyebrow">The Road Itinerary</div>
+    <h1>Six days,<br><em>six stops</em>,<br>3,100 miles.</h1>
+    <p class="deck">A day-by-day drive plan from San Francisco to New York City — timed for a May 28 departure, arriving June 2nd, with sensible overnight stops and a few things worth seeing along the way.</p>
+  </div>
+  <div class="stats-card">
+    <div class="stat-label">Total Distance</div>
+    <div class="stat-val">3,109 <em>miles</em></div>
+    <hr class="stats-divider">
+    <div class="stat-label">Driving Days</div>
+    <div class="stat-val">6 <em>days</em></div>
+    <hr class="stats-divider">
+    <div class="stat-label">Dates</div>
+    <div class="stat-val" style="font-size: 20px;">May 28 – June 2</div>
+    <hr class="stats-divider">
+    <div class="stat-label">Est. Drive Time</div>
+    <div class="stat-val" style="font-size: 20px;">~46 <em>hours total</em></div>
+  </div>
+</section>
+
+<!-- ============ PROGRESS RIBBON ============ -->
+<div class="progress-ribbon">
+  <a class="ribbon-day" href="#day1">
+    <div class="rd-num">Day 1 · May 28</div>
+    <div class="rd-date">Wed</div>
+    <div class="rd-route">SF → Salt Lake City</div>
+    <div class="rd-miles">750 mi · ~10.5 hr</div>
+  </a>
+  <a class="ribbon-day" href="#day2">
+    <div class="rd-num">Day 2 · May 29</div>
+    <div class="rd-date">Thu</div>
+    <div class="rd-route">SLC → Denver</div>
+    <div class="rd-miles">525 mi · ~7.5 hr</div>
+  </a>
+  <a class="ribbon-day" href="#day3">
+    <div class="rd-num">Day 3 · May 30</div>
+    <div class="rd-date">Fri</div>
+    <div class="rd-route">Denver → Kansas City</div>
+    <div class="rd-miles">605 mi · ~8.5 hr</div>
+  </a>
+  <a class="ribbon-day" href="#day4">
+    <div class="rd-num">Day 4 · May 31</div>
+    <div class="rd-date">Sat</div>
+    <div class="rd-route">KC → Indianapolis</div>
+    <div class="rd-miles">480 mi · ~6.5 hr</div>
+  </a>
+  <a class="ribbon-day" href="#day5">
+    <div class="rd-num">Day 5 · June 1</div>
+    <div class="rd-date">Sun</div>
+    <div class="rd-route">Indy → Pittsburgh</div>
+    <div class="rd-miles">375 mi · ~5.5 hr</div>
+  </a>
+  <a class="ribbon-day" href="#day6">
+    <div class="rd-num">Day 6 · June 2</div>
+    <div class="rd-date">Mon</div>
+    <div class="rd-route">Pittsburgh → NYC</div>
+    <div class="rd-miles">374 mi · ~5.5 hr</div>
+  </a>
+</div>
+
+<!-- ============ DAY 1 ============ -->
+<section class="day-section" id="day1">
+  <div class="day-header">
+    <div class="day-num">1.</div>
+    <div class="day-title-block">
+      <div class="day-date">Wednesday, May 28</div>
+      <div class="day-route-line">San Francisco<span class="arrow">→</span>Salt Lake City</div>
+    </div>
+    <div class="day-meta">
+      <span class="highlight">750 miles</span><br>
+      ~10.5 hrs driving<br>
+      Depart early (7 am)
+    </div>
+  </div>
+
+  <div class="day-body">
+    <div class="stops-list">
+
+      <div class="stop">
+        <div class="stop-time">7:00 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot origin"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type">Departure</div>
+          <div class="stop-city">San Francisco<span class="state">CA</span></div>
+          <p class="stop-note">Leave early to beat the Bay Bridge backup. Take I-80 east — you'll cross the Bay Bridge, then the Carquinez, then you're out of the Bay Area and climbing into the Sierra Nevada foothills within 90 minutes. This is the last morning in California. Take it in.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">10:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Fuel + Stretch</div>
+          <div class="stop-city">Truckee / Donner Pass<span class="state">CA</span></div>
+          <p class="stop-note">The summit of Donner Pass sits at 7,135 feet. Stop at the Donner Memorial State Park scenic overlook if weather permits — the Sierras are at their best in late May with snowcaps still visible. Fuel in Truckee before the Nevada desert stretch.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">12:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Lunch Stop</div>
+          <div class="stop-city">Reno<span class="state">NV</span></div>
+          <p class="stop-note">Reno is a solid lunch stop — get off at Virginia Street for a quick meal. The city has better food than its reputation suggests. <strong>The Old Granite Street Eatery</strong> or grab supplies at the Whole Foods if you'd rather push on. Fill up on gas here; Nevada fuel stops thin out heading east.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">4:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Afternoon Drive-Through</div>
+          <div class="stop-city">Elko<span class="state">NV</span></div>
+          <p class="stop-note">The I-80 corridor through Nevada is long, flat, and genuinely beautiful in a stark way — sagebrush valleys flanked by distant mountain ranges. Elko breaks the monotony at roughly the state's midpoint. <strong>Commercial Casino Basque restaurant</strong> if you're hungry; Picon Punch is the local tradition.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">7:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot destination"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type destination-label">Overnight</div>
+          <div class="stop-city">Salt Lake City<span class="state">UT</span></div>
+          <p class="stop-note">You'll arrive tired. SLC has excellent food and a surprisingly good hotel scene — <strong>The Grand America</strong> is the classic, but the Marriott downtown is solid and cheaper. The city sits in a stunning bowl between the Wasatch and Oquirrh ranges; the morning view from a high floor is worth it.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="day-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Today's Drive</div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">750</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~10.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">7:00 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~7:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">750 mi</span></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Road Notes</div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>I-80 all the way.</strong> The most direct coast-to-coast interstate. Straightforward but long through Nevada.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Donner Pass:</strong> no chains required in late May, but can see snow flurries — check Caltrans before leaving.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Nevada fuel:</strong> long gaps between exits. Don't let the tank drop below half.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============ DAY 2 ============ -->
+<section class="day-section" id="day2">
+  <div class="day-header">
+    <div class="day-num">2.</div>
+    <div class="day-title-block">
+      <div class="day-date">Thursday, May 29</div>
+      <div class="day-route-line">Salt Lake City<span class="arrow">→</span>Denver</div>
+    </div>
+    <div class="day-meta">
+      <span class="highlight">525 miles</span><br>
+      ~7.5 hrs driving<br>
+      Lighter day
+    </div>
+  </div>
+
+  <div class="day-body">
+    <div class="stops-list">
+
+      <div class="stop">
+        <div class="stop-time">8:00 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot origin"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type">Departure</div>
+          <div class="stop-city">Salt Lake City<span class="state">UT</span></div>
+          <p class="stop-note">A more relaxed morning — you earned it. Breakfast at the hotel or grab something on the way out. Take I-15 south briefly, then catch I-80 west to the Bonneville Speedway exit, or head straight onto I-80 east toward the Wyoming border depending on your mood.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">9:00 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Optional Detour — Worth It</div>
+          <div class="stop-city">Bonneville Salt Flats<span class="state">UT</span></div>
+          <p class="stop-note">Forty minutes west of SLC on I-80, the Bonneville Salt Flats are genuinely otherworldly — a 30,000-acre expanse of white salt that in spring can hold a thin sheet of water, creating a mirror effect that's one of the stranger landscapes in North America. Walk out on the flats. Takes 30–45 minutes total. Backtrack on I-80 to I-15 south to US-6 east into Colorado.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">12:00 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Scenic Drive + Lunch</div>
+          <div class="stop-city">Provo / Spanish Fork Canyon<span class="state">UT</span></div>
+          <p class="stop-note">US-6 east from Spanish Fork through Price Canyon is one of the most beautiful drives in Utah — red-rock walls, small mining towns, the Book Cliffs hovering on the horizon. Lunch in Price or Green River. <strong>Ray's Tavern</strong> in Green River is a classic road stop; famous for green-chile burgers.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">2:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">State Line + Scenic Stretch</div>
+          <div class="stop-city">Grand Junction<span class="state">CO</span></div>
+          <p class="stop-note">Colorado begins here and it announces itself immediately — the Colorado National Monument rises to the south. From Grand Junction, I-70 east climbs into the Rockies via <strong>Glenwood Canyon</strong>, one of the most dramatic highway stretches in the US: 12 miles of red-rock gorge with the Colorado River beside you. Slow down and drive it properly.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">6:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot destination"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type destination-label">Overnight</div>
+          <div class="stop-city">Denver<span class="state">CO</span></div>
+          <p class="stop-note">Denver is a legitimate city worth a solid dinner. <strong>Rioja</strong> in Larimer Square or <strong>Tavernetta</strong> near Union Station are both excellent. The 16th Street Mall is pedestrian-friendly if you want to walk off the drive. Stay near downtown — Capitol Hill or Union Station area puts you in easy highway position for the morning.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="day-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Today's Drive</div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">525</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~7.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">8:00 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~6:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">1,275 mi</span></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Road Notes</div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Glenwood Canyon:</strong> I-70 closes occasionally for rockfall or flooding. Check CDOT before leaving Grand Junction.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Vail Pass</strong> at 10,662 ft and <strong>Eisenhower Tunnel</strong> at 11,013 ft — the highest interstate tunnels in the US. Snow possible even in late May.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Denver altitude is 5,280 ft — the "Mile High" thing is real. Drink extra water.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============ DAY 3 ============ -->
+<section class="day-section" id="day3">
+  <div class="day-header">
+    <div class="day-num">3.</div>
+    <div class="day-title-block">
+      <div class="day-date">Friday, May 30</div>
+      <div class="day-route-line">Denver<span class="arrow">→</span>Kansas City</div>
+    </div>
+    <div class="day-meta">
+      <span class="highlight">605 miles</span><br>
+      ~8.5 hrs driving<br>
+      Longest flat drive
+    </div>
+  </div>
+
+  <div class="day-body">
+    <div class="stops-list">
+
+      <div class="stop">
+        <div class="stop-time">7:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot origin"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type">Departure</div>
+          <div class="stop-city">Denver<span class="state">CO</span></div>
+          <p class="stop-note">Early start — today is long and Kansas is wide. Take I-70 east out of Denver. The Rockies shrink in the rearview over about 45 minutes as the Front Range drops into the High Plains. It's a dramatic transition: you will watch the last mountains disappear and the Great Plains swallow you.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">8:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Quick Stop</div>
+          <div class="stop-city">Limon<span class="state">CO</span></div>
+          <p class="stop-note">The last real services before Kansas. Fuel here. Limon sits at the exact point where Colorado's landscape fully flattens into prairie — it looks like the edge of the world. Fill the tank, grab coffee, and settle in: 400 miles of Kansas await.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">12:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Lunch + Midpoint</div>
+          <div class="stop-city">Salina<span class="state">KS</span></div>
+          <p class="stop-note">The geographic and psychological midpoint of the day. Salina is a proper small city with good lunch options — the <strong>Brookville Hotel</strong> has been serving fried chicken since 1915 and is a Kansas institution. The Flint Hills begin here: rolling tallgrass prairie that was burned each spring for millennia by Plains tribes and lightning. In late May, the hills glow bright green.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">3:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Quick Stretch</div>
+          <div class="stop-city">Topeka<span class="state">KS</span></div>
+          <p class="stop-note">State capital, unremarkable from the highway, useful for fuel. The <strong>Brown v. Board of Education</strong> National Historic Site is here if you want a short detour (20 min roundtrip from I-70) — it's in the actual Monroe Elementary School building. Worth a stop if there's any interest in American history.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">5:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot destination"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type destination-label">Overnight</div>
+          <div class="stop-city">Kansas City<span class="state">MO</span></div>
+          <p class="stop-note">Kansas City is an underrated road trip stop. Dinner must be BBQ: <strong>Arthur Bryant's</strong> (the original, since 1958) or <strong>Gates Bar-B-Q</strong> if you want the slightly spicier version. Stay in the Crossroads Arts District or downtown — both are walkable and well-priced. KC is also straddling two time zones, so confirm you're on Central before setting alarms.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="day-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Today's Drive</div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">605</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~8.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">7:30 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~5:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">1,880 mi</span></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Road Notes</div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>I-70 Kansas</strong> is genuinely tedious. Good podcast day. No significant mountains or curves for 400 miles.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Late May brings <strong>tornado season</strong> to the southern Plains. Watch weather apps, especially in the afternoon.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Time zone change: Kansas is Central (same as KC). Set clocks forward 1 hr when crossing into KC.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============ DAY 4 ============ -->
+<section class="day-section" id="day4">
+  <div class="day-header">
+    <div class="day-num">4.</div>
+    <div class="day-title-block">
+      <div class="day-date">Saturday, May 31</div>
+      <div class="day-route-line">Kansas City<span class="arrow">→</span>Indianapolis</div>
+    </div>
+    <div class="day-meta">
+      <span class="highlight">480 miles</span><br>
+      ~6.5 hrs driving<br>
+      St. Louis detour
+    </div>
+  </div>
+
+  <div class="day-body">
+    <div class="stops-list">
+
+      <div class="stop">
+        <div class="stop-time">8:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot origin"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type">Departure</div>
+          <div class="stop-city">Kansas City<span class="state">MO</span></div>
+          <p class="stop-note">I-70 east again. Missouri is a pleasant surprise after Kansas — rolling hills, forests, the Missouri River running alongside parts of the highway. The 250 miles to St. Louis go quickly.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">11:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Worthy Stop — 1.5 hrs</div>
+          <div class="stop-city">St. Louis<span class="state">MO</span></div>
+          <p class="stop-note">The Gateway Arch is one of the best pieces of American public infrastructure — 630 feet of stainless steel on the bank of the Mississippi, marking the point where America turned west. Take the tram to the top: there's nothing else like the view of the Mississippi and the Illinois flatlands from inside the Arch's narrow peak. Budget 90 minutes including parking. <strong>Toasted Ravioli</strong> is the local food you should eat once.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">2:00 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Illinois Drive-Through</div>
+          <div class="stop-city">Terre Haute<span class="state">IN</span></div>
+          <p class="stop-note">Cross the Mississippi (one of the great river crossings in America — look both ways), enter Illinois, drive I-70 east through farm country. Terre Haute is the fuel and coffee stop before Indianapolis. Indiana begins here and it looks exactly like Illinois: flat, agricultural, good.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">4:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot destination"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type destination-label">Overnight</div>
+          <div class="stop-city">Indianapolis<span class="state">IN</span></div>
+          <p class="stop-note">Indianapolis punches above its weight as a road trip stop. The <strong>Mass Ave</strong> and <strong>Fountain Square</strong> neighborhoods have genuinely good restaurants and bars — <strong>Tinker Street</strong> and <strong>Milktooth</strong> are both worth finding. Stay downtown; the Bottleworks Hotel (in a converted Coca-Cola bottling plant) is the most interesting option in the city.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="day-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Today's Drive</div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">480</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~6.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">8:30 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~4:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">2,360 mi</span></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Road Notes</div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Saturday traffic</strong> through St. Louis can be heavy around the Arch area. Use GPS for real-time routing.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Arch tram tickets can be reserved ahead at <strong>gatewayarch.org</strong> — worth doing to skip the queue.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Eastern time zone starts at the Ohio border — but Indiana is already on Eastern Standard, so no change today.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============ DAY 5 ============ -->
+<section class="day-section" id="day5">
+  <div class="day-header">
+    <div class="day-num">5.</div>
+    <div class="day-title-block">
+      <div class="day-date">Sunday, June 1</div>
+      <div class="day-route-line">Indianapolis<span class="arrow">→</span>Pittsburgh</div>
+    </div>
+    <div class="day-meta">
+      <span class="highlight">375 miles</span><br>
+      ~5.5 hrs driving<br>
+      Easy day, rest up
+    </div>
+  </div>
+
+  <div class="day-body">
+    <div class="stops-list">
+
+      <div class="stop">
+        <div class="stop-time">9:00 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot origin"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type">Departure</div>
+          <div class="stop-city">Indianapolis<span class="state">IN</span></div>
+          <p class="stop-note">Slow morning — this is the shortest drive day. Eat a proper breakfast. Take I-70 east out of Indy into Ohio; the landscape gradually gets hillier as you approach the Appalachian foothills. Ohio goes fast.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">11:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Lunch + Stretch</div>
+          <div class="stop-city">Columbus<span class="state">OH</span></div>
+          <p class="stop-note">Columbus is a genuinely underrated American city with a strong food scene. The <strong>Short North</strong> neighborhood is good for a late brunch — <strong>Katalina's</strong> has a line but is worth it for the pancake balls. Or stay on I-70 and stop at the Polaris area exit for something fast. You only need 45–60 minutes here.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">2:00 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Quick Stop</div>
+          <div class="stop-city">Cambridge / Zanesville<span class="state">OH</span></div>
+          <p class="stop-note">Eastern Ohio is underestimated — the landscape starts to roll and fold as the Appalachian Plateau begins. Zanesville sits on the junction of the Muskingum and Licking Rivers and has a famous Y-bridge (one of only a few in the world). A 15-minute detour if you like bridges.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">3:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot destination"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type destination-label">Overnight</div>
+          <div class="stop-city">Pittsburgh<span class="state">PA</span></div>
+          <p class="stop-note">Pittsburgh is one of the great American cities and the most underappreciated stop on this route. The approach from I-376 through the Fort Pitt Tunnel is famous: you emerge from the mountain into the downtown skyline hanging above three rivers. <strong>Primanti Bros.</strong> is obligatory (sandwiches with fries inside them). Stay in the Strip District or Downtown. Early arrival means a real evening in a real city before the final push tomorrow.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="day-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Today's Drive</div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">375</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~5.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">9:00 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~3:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">2,735 mi</span></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Road Notes</div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Early Sunday arrival in Pittsburgh = lower traffic. The Fort Pitt Tunnel can back up on weekday mornings.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Rest up tonight.</strong> Tomorrow is the final push into New York City — you want to arrive sharp, not exhausted.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>Pittsburgh has paid parking everywhere. Budget $15–25 for overnight hotel parking downtown.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ============ DAY 6 ============ -->
+<section class="day-section" id="day6">
+  <div class="day-header">
+    <div class="day-num">6.</div>
+    <div class="day-title-block">
+      <div class="day-date">Monday, June 2</div>
+      <div class="day-route-line">Pittsburgh<span class="arrow">→</span>New York City</div>
+    </div>
+    <div class="day-meta">
+      <span class="highlight">374 miles</span><br>
+      ~5.5 hrs driving<br>
+      Final day
+    </div>
+  </div>
+
+  <div class="day-body">
+    <div class="stops-list">
+
+      <div class="stop">
+        <div class="stop-time">8:00 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot origin"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type">Departure</div>
+          <div class="stop-city">Pittsburgh<span class="state">PA</span></div>
+          <p class="stop-note">Leave by 8 am to beat rush hour in Philadelphia and hit NYC before the worst of the afternoon traffic. Take I-376 to the Pennsylvania Turnpike (I-76 east). The PA Turnpike runs through some of the most beautiful mountain landscape of the entire trip — the Allegheny ridges in June are stunning.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">10:30 am</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Fuel + Stretch</div>
+          <div class="stop-city">Breezewood<span class="state">PA</span></div>
+          <p class="stop-note">The infamous Breezewood interchange — a strip of gas stations and fast food where the Pennsylvania Turnpike and I-70 diverge. Technically there's no through-road connection (a quirk of 1940s highway politics), so everyone exits and re-enters via US-30 through the strip. It's the ugliest mile of the trip, but the fuel prices are competitive.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">12:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Optional Stop</div>
+          <div class="stop-city">Philadelphia<span class="state">PA</span></div>
+          <p class="stop-note">If energy and timing allow, exit I-76 for Philadelphia — the city is 30 minutes off I-95 and a cheesesteak from <strong>Pat's</strong> or <strong>Tony Luke's</strong> is a legitimate road trip milestone. But if you're eager to arrive, stay on I-95 and push through. At noon on a Monday, the drive from Philly to NYC on the NJ Turnpike takes 90–120 minutes.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">1:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot waypoint"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type waypoint-label">Delaware Water Gap</div>
+          <div class="stop-city">Delaware Water Gap<span class="state">NJ/PA</span></div>
+          <p class="stop-note">Where I-80 crosses the Delaware River into New Jersey — a broad notch in the Appalachian ridgeline with the river below. Pull off at the Water Gap Recreation Area overlook for 10 minutes if the stop hasn't been made. You are now in the New York metropolitan orbit; the skyline is ~70 miles ahead.</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-time">3:30 pm</div>
+        <div class="stop-connector">
+          <div class="stop-dot destination"></div>
+          <div class="stop-line"></div>
+        </div>
+        <div class="stop-content">
+          <div class="stop-type destination-label">Arrival</div>
+          <div class="stop-city">New York City<span class="state">NY</span></div>
+          <p class="stop-note">You made it. The NJ Turnpike approach offers the classic skyline view across the Hudson before you dive through the Lincoln Tunnel. If driving a moving truck, note that the Lincoln and Holland Tunnels have height restrictions (check your truck clearance); the George Washington Bridge is the truck-safe crossing. Park, breathe, eat something. <strong>3,109 miles. Six days. Done.</strong></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="day-sidebar">
+      <div class="sidebar-block">
+        <div class="sidebar-label">Today's Drive</div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">374</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~5.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">8:00 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~3:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">3,109 mi</span></div>
+      </div>
+      <div class="sidebar-block">
+        <div class="sidebar-label">Road Notes</div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>PA Turnpike tolls:</strong> ~$35 Pittsburgh to the NJ border. E-ZPass saves ~40%; buy one if doing this often.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span><strong>Tunnel height limits:</strong> Lincoln (13'6"), Holland (12'1"), GWB (no limit). Moving trucks should take the GWB.</span>
+        </div>
+        <div class="road-condition">
+          <span class="icon">◈</span>
+          <span>NYC parking for a truck or large vehicle: research your block before arrival. Not all neighborhoods have easy unloading.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUMMARY TABLE ============ -->
+<section class="summary-section">
+  <div class="summary-head">
+    <span class="summary-num">§ 01</span>
+    <h2>Six days, at a glance</h2>
+    <span class="meta">Miles · Times · Highlights</span>
+  </div>
+
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Route</th>
+        <th>Miles</th>
+        <th>Drive Time</th>
+        <th>Don't Miss</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.</td>
+        <td class="route-cell">San Francisco → Salt Lake City</td>
+        <td class="miles-cell">750 mi</td>
+        <td class="time-cell">~10.5 hr</td>
+        <td class="highlight-cell">Donner Pass views; Reno lunch stop</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td class="route-cell">Salt Lake City → Denver</td>
+        <td class="miles-cell">525 mi</td>
+        <td class="time-cell">~7.5 hr</td>
+        <td class="highlight-cell">Bonneville Salt Flats; Glenwood Canyon</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td class="route-cell">Denver → Kansas City</td>
+        <td class="miles-cell">605 mi</td>
+        <td class="time-cell">~8.5 hr</td>
+        <td class="highlight-cell">Kansas Flint Hills; KC BBQ at Arthur Bryant's</td>
+      </tr>
+      <tr>
+        <td>4.</td>
+        <td class="route-cell">Kansas City → Indianapolis</td>
+        <td class="miles-cell">480 mi</td>
+        <td class="time-cell">~6.5 hr</td>
+        <td class="highlight-cell">Gateway Arch, St. Louis; Mississippi crossing</td>
+      </tr>
+      <tr>
+        <td>5.</td>
+        <td class="route-cell">Indianapolis → Pittsburgh</td>
+        <td class="miles-cell">375 mi</td>
+        <td class="time-cell">~5.5 hr</td>
+        <td class="highlight-cell">Fort Pitt Tunnel reveal; Primanti Bros.</td>
+      </tr>
+      <tr>
+        <td>6.</td>
+        <td class="route-cell">Pittsburgh → New York City</td>
+        <td class="miles-cell">374 mi</td>
+        <td class="time-cell">~5.5 hr</td>
+        <td class="highlight-cell">PA Turnpike Alleghenies; NYC skyline approach</td>
+      </tr>
+      <tr class="total-row">
+        <td>Total</td>
+        <td class="route-cell">San Francisco → New York City</td>
+        <td class="miles-cell">3,109 mi</td>
+        <td class="time-cell">~44 hrs</td>
+        <td class="highlight-cell">6 nights · 6 states · 1 new coast</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="packing-note">
+    <div class="pn-label">↓ For the Road</div>
+    <h3>Three categories of things to have in the car — not in the moving truck.</h3>
+    <div class="packing-note-grid">
+      <div class="pn-col">
+        <div class="pn-col-label">Documents & Finance</div>
+        <ul>
+          <li>Rental agreement or truck paperwork</li>
+          <li>Insurance cards (car + renter's)</li>
+          <li>Hotel confirmations printed</li>
+          <li>Cash for tolls and tips</li>
+          <li>Phone charger + backup battery</li>
+        </ul>
+      </div>
+      <div class="pn-col">
+        <div class="pn-col-label">Comfort & Health</div>
+        <ul>
+          <li>Two changes of clothes (accessible)</li>
+          <li>Basic medications + first aid kit</li>
+          <li>Sunscreen — windshield glare is real</li>
+          <li>Snacks that don't melt or crumble</li>
+          <li>Reusable water bottles × 2</li>
+        </ul>
+      </div>
+      <div class="pn-col">
+        <div class="pn-col-label">Emergency Kit</div>
+        <ul>
+          <li>Jumper cables or portable jump starter</li>
+          <li>Flashlight with fresh batteries</li>
+          <li>Spare tire confirmed inflated</li>
+          <li>AAA membership or roadside plan</li>
+          <li>Paper map (yes, really)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <span><a href="moving-cost-comparison.html">← Back: Moving Cost Breakdown</a></span>
+  <span class="end">— Safe travels eastward —</span>
+  <span>Vol. 01 · May 28 – June 2</span>
+</footer>
+
+</div>
+</body>
+</html>
