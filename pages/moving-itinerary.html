@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SF → NYC: Road Trip Itinerary · May 28 – June 2</title>
+<title>SF → Boston: Road Trip Itinerary · May 25 – June 5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
@@ -741,12 +741,113 @@ footer a {
 
 footer a:hover { color: var(--vermillion); }
 
+/* ============ PHASE BLOCKS (packing / unpacking) ============ */
+.phase-block {
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  padding: 40px 48px;
+  margin-bottom: 64px;
+  position: relative;
+}
+
+.phase-block::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: -6px;
+  right: 6px; bottom: 6px;
+  border: 1px solid var(--rule);
+  z-index: -1;
+}
+
+.phase-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 16px;
+}
+
+.phase-block h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3.5vw, 38px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.phase-intro {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 820px;
+  margin-bottom: 32px;
+}
+
+.phase-intro strong { color: var(--ink); font-weight: 600; }
+
+.phase-task-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.phase-task-col .ptc-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 6px;
+}
+
+.phase-task-col .ptc-day {
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.phase-task-col ul {
+  list-style: none;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.phase-task-col li {
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.phase-task-col li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 10px;
+  top: 3px;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 900px) {
   .day-body { grid-template-columns: 1fr; }
   .day-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .sidebar-block { margin-bottom: 0; }
   .packing-note-grid { grid-template-columns: 1fr; gap: 24px; }
+  .phase-task-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .phase-task-grid { grid-template-columns: 1fr; gap: 24px; }
+  .phase-block { padding: 28px 24px; }
 }
 
 @media (max-width: 720px) {
@@ -771,19 +872,19 @@ footer a:hover { color: var(--vermillion); }
 <div class="masthead">
   <span class="vol">Vol. 01 — Field Notes</span>
   <span><a href="moving-cost-comparison.html">← Cost Breakdown</a></span>
-  <span>May 28 – June 2, 2026</span>
+  <span>May 25 – June 4, 2026</span>
 </div>
 
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div>
     <div class="eyebrow">The Road Itinerary</div>
-    <h1>Six days,<br><em>six stops</em>,<br>3,100 miles.</h1>
-    <p class="deck">A day-by-day drive plan from San Francisco to New York City — timed for a May 28 departure, arriving June 2nd, with sensible overnight stops and a few things worth seeing along the way.</p>
+    <h1>Six days,<br><em>six stops</em>,<br>3,315 miles.</h1>
+    <p class="deck">A day-by-day drive plan from San Francisco to Boston — timed for a May 28 departure, arriving June 2nd, with sensible overnight stops and a few things worth seeing along the way.</p>
   </div>
   <div class="stats-card">
     <div class="stat-label">Total Distance</div>
-    <div class="stat-val">3,109 <em>miles</em></div>
+    <div class="stat-val">3,315 <em>miles</em></div>
     <hr class="stats-divider">
     <div class="stat-label">Driving Days</div>
     <div class="stat-val">6 <em>days</em></div>
@@ -792,7 +893,7 @@ footer a:hover { color: var(--vermillion); }
     <div class="stat-val" style="font-size: 20px;">May 28 – June 2</div>
     <hr class="stats-divider">
     <div class="stat-label">Est. Drive Time</div>
-    <div class="stat-val" style="font-size: 20px;">~46 <em>hours total</em></div>
+    <div class="stat-val" style="font-size: 20px;">~48 <em>hours total</em></div>
   </div>
 </section>
 
@@ -831,9 +932,51 @@ footer a:hover { color: var(--vermillion); }
   <a class="ribbon-day" href="#day6">
     <div class="rd-num">Day 6 · June 2</div>
     <div class="rd-date">Mon</div>
-    <div class="rd-route">Pittsburgh → NYC</div>
-    <div class="rd-miles">374 mi · ~5.5 hr</div>
+    <div class="rd-route">Pittsburgh → Boston</div>
+    <div class="rd-miles">580 mi · ~8.5 hr</div>
   </a>
+</div>
+
+<!-- ============ PRE-DEPARTURE ============ -->
+<div class="phase-block">
+  <div class="phase-label">↓ Before You Leave · SF Packing Window</div>
+  <h2>Three days to pack, purge,<br>and hand over the keys.</h2>
+  <p class="phase-intro">Build in at least three full days before May 28 for the SF side. The actual packing goes faster than expected — the selling, donating, and decision-making takes the real time. <strong>May 25–27</strong> gives a Monday departure with a clear weekend to wrap everything up without a last-night panic.</p>
+  <div class="phase-task-grid">
+    <div class="phase-task-col">
+      <div class="ptc-label">Day 1 · May 25 (Sat)</div>
+      <div class="ptc-day">Purge &amp; sell</div>
+      <ul>
+        <li>List furniture on Facebook Marketplace (price to move fast)</li>
+        <li>Bag donations for Goodwill or SFSPCA thrift</li>
+        <li>Decide what's worth shipping vs. replacing in Boston</li>
+        <li>Buy packing supplies: boxes, tape, bubble wrap, markers</li>
+        <li>Take photos of electronics setups before disassembling</li>
+      </ul>
+    </div>
+    <div class="phase-task-col">
+      <div class="ptc-label">Day 2 · May 26 (Sun)</div>
+      <div class="ptc-day">Pack room by room</div>
+      <ul>
+        <li>Books and media first (heaviest — bottom of boxes)</li>
+        <li>Label every box: room + contents + fragile if needed</li>
+        <li>Pack a "first night" bag that stays accessible in the car</li>
+        <li>Wrap dishes and fragile items individually</li>
+        <li>Confirm container / truck pickup window with provider</li>
+      </ul>
+    </div>
+    <div class="phase-task-col">
+      <div class="ptc-label">Day 3 · May 27 (Mon)</div>
+      <div class="ptc-day">Load &amp; close out</div>
+      <ul>
+        <li>Load container or truck — heavy items first, against the wall</li>
+        <li>Walk every room, closet, and cabinet one final time</li>
+        <li>Clean apartment; photograph condition for deposit return</li>
+        <li>Return keys; confirm forwarding address with post office</li>
+        <li>Fill car with road trip gear; charge everything overnight</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <!-- ============ DAY 1 ============ -->
@@ -1372,7 +1515,7 @@ footer a:hover { color: var(--vermillion); }
         </div>
         <div class="road-condition">
           <span class="icon">◈</span>
-          <span><strong>Rest up tonight.</strong> Tomorrow is the final push into New York City — you want to arrive sharp, not exhausted.</span>
+          <span><strong>Rest up tonight.</strong> Tomorrow is the final push into Boston — you want to arrive sharp, not exhausted.</span>
         </div>
         <div class="road-condition">
           <span class="icon">◈</span>
@@ -1391,12 +1534,12 @@ footer a:hover { color: var(--vermillion); }
     <div class="day-num">6.</div>
     <div class="day-title-block">
       <div class="day-date">Monday, June 2</div>
-      <div class="day-route-line">Pittsburgh<span class="arrow">→</span>New York City</div>
+      <div class="day-route-line">Pittsburgh<span class="arrow">→</span>Boston</div>
     </div>
     <div class="day-meta">
-      <span class="highlight">374 miles</span><br>
-      ~5.5 hrs driving<br>
-      Final day
+      <span class="highlight">580 miles</span><br>
+      ~8.5 hrs driving<br>
+      Final day — longest finish
     </div>
   </div>
 
@@ -1404,7 +1547,7 @@ footer a:hover { color: var(--vermillion); }
     <div class="stops-list">
 
       <div class="stop">
-        <div class="stop-time">8:00 am</div>
+        <div class="stop-time">7:30 am</div>
         <div class="stop-connector">
           <div class="stop-dot origin"></div>
           <div class="stop-line"></div>
@@ -1412,20 +1555,20 @@ footer a:hover { color: var(--vermillion); }
         <div class="stop-content">
           <div class="stop-type">Departure</div>
           <div class="stop-city">Pittsburgh<span class="state">PA</span></div>
-          <p class="stop-note">Leave by 8 am to beat rush hour in Philadelphia and hit NYC before the worst of the afternoon traffic. Take I-376 to the Pennsylvania Turnpike (I-76 east). The PA Turnpike runs through some of the most beautiful mountain landscape of the entire trip — the Allegheny ridges in June are stunning.</p>
+          <p class="stop-note">Early start — today is the longest final-day drive of the trip. Take I-376 east to the Pennsylvania Turnpike (I-76), then I-476 north toward Allentown rather than pushing through Philadelphia. This keeps you out of Philly traffic and puts you on I-78 east into New Jersey, then I-287 north to I-84 east — the cleanest path to New England.</p>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-time">10:30 am</div>
+        <div class="stop-time">10:00 am</div>
         <div class="stop-connector">
           <div class="stop-dot waypoint"></div>
           <div class="stop-line"></div>
         </div>
         <div class="stop-content">
           <div class="stop-type waypoint-label">Fuel + Stretch</div>
-          <div class="stop-city">Breezewood<span class="state">PA</span></div>
-          <p class="stop-note">The infamous Breezewood interchange — a strip of gas stations and fast food where the Pennsylvania Turnpike and I-70 diverge. Technically there's no through-road connection (a quirk of 1940s highway politics), so everyone exits and re-enters via US-30 through the strip. It's the ugliest mile of the trip, but the fuel prices are competitive.</p>
+          <div class="stop-city">Allentown / Bethlehem<span class="state">PA</span></div>
+          <p class="stop-note">Two and a half hours out of Pittsburgh, Allentown and Bethlehem sit side by side in the Lehigh Valley. <strong>Historic Bethlehem Steel</strong> — the old mill site is now a museum and arts complex visible from the highway — is worth a slow drive-by even if you don't stop. Fuel here before catching I-78 east into New Jersey.</p>
         </div>
       </div>
 
@@ -1436,35 +1579,35 @@ footer a:hover { color: var(--vermillion); }
           <div class="stop-line"></div>
         </div>
         <div class="stop-content">
-          <div class="stop-type waypoint-label">Optional Stop</div>
-          <div class="stop-city">Philadelphia<span class="state">PA</span></div>
-          <p class="stop-note">If energy and timing allow, exit I-76 for Philadelphia — the city is 30 minutes off I-95 and a cheesesteak from <strong>Pat's</strong> or <strong>Tony Luke's</strong> is a legitimate road trip milestone. But if you're eager to arrive, stay on I-95 and push through. At noon on a Monday, the drive from Philly to NYC on the NJ Turnpike takes 90–120 minutes.</p>
+          <div class="stop-type waypoint-label">Lunch</div>
+          <div class="stop-city">Hartford<span class="state">CT</span></div>
+          <p class="stop-note">Cross the Hudson via I-84, enter Connecticut, and stop in Hartford for lunch. The city is unremarkable but convenient — the highway services around exit 44 are fast and predictable. If time allows, <strong>Treva</strong> in West Hartford (10 minutes off I-84) is a far better meal. Hartford is almost exactly the halfway point between Pittsburgh and Boston: 290 miles each way.</p>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-time">1:30 pm</div>
+        <div class="stop-time">2:30 pm</div>
         <div class="stop-connector">
           <div class="stop-dot waypoint"></div>
           <div class="stop-line"></div>
         </div>
         <div class="stop-content">
-          <div class="stop-type waypoint-label">Delaware Water Gap</div>
-          <div class="stop-city">Delaware Water Gap<span class="state">NJ/PA</span></div>
-          <p class="stop-note">Where I-80 crosses the Delaware River into New Jersey — a broad notch in the Appalachian ridgeline with the river below. Pull off at the Water Gap Recreation Area overlook for 10 minutes if the stop hasn't been made. You are now in the New York metropolitan orbit; the skyline is ~70 miles ahead.</p>
+          <div class="stop-type waypoint-label">Scenic Stretch</div>
+          <div class="stop-city">Berkshire Mountains<span class="state">MA</span></div>
+          <p class="stop-note">The Massachusetts border and the Berkshires arrive almost simultaneously — rolling forested hills, old stone walls, small towns with white clapboard churches. I-90 (the Mass Pike) enters here and runs straight east to Boston. In late May / early June, the Berkshires are intensely green. This is New England properly. Roll the windows down.</p>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-time">3:30 pm</div>
+        <div class="stop-time">4:30 pm</div>
         <div class="stop-connector">
           <div class="stop-dot destination"></div>
           <div class="stop-line"></div>
         </div>
         <div class="stop-content">
           <div class="stop-type destination-label">Arrival</div>
-          <div class="stop-city">New York City<span class="state">NY</span></div>
-          <p class="stop-note">You made it. The NJ Turnpike approach offers the classic skyline view across the Hudson before you dive through the Lincoln Tunnel. If driving a moving truck, note that the Lincoln and Holland Tunnels have height restrictions (check your truck clearance); the George Washington Bridge is the truck-safe crossing. Park, breathe, eat something. <strong>3,109 miles. Six days. Done.</strong></p>
+          <div class="stop-city">Boston<span class="state">MA</span></div>
+          <p class="stop-note">The Mass Pike drops you into the city through the Ted Williams Tunnel or the Copley/Prudential exits depending on which neighborhood you're headed to. If driving a moving truck, note that <strong>Storrow Drive is strictly prohibited</strong> for trucks (low bridges — this is not a suggestion, it's a very real hazard). Take I-93 or Surface Artery routes instead. Park, breathe, eat something good. <strong>3,315 miles. Six days. Done.</strong></p>
         </div>
       </div>
 
@@ -1473,30 +1616,72 @@ footer a:hover { color: var(--vermillion); }
     <div class="day-sidebar">
       <div class="sidebar-block">
         <div class="sidebar-label">Today's Drive</div>
-        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">374</span></div>
-        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~5.5 hrs</span></div>
-        <div class="stat-row"><span class="sk">Depart</span><span class="sv">8:00 am</span></div>
-        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~3:30 pm</span></div>
-        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">3,109 mi</span></div>
+        <div class="stat-row"><span class="sk">Miles</span><span class="sv green">580</span></div>
+        <div class="stat-row"><span class="sk">Est. Drive</span><span class="sv">~8.5 hrs</span></div>
+        <div class="stat-row"><span class="sk">Depart</span><span class="sv">7:30 am</span></div>
+        <div class="stat-row"><span class="sk">Arrive</span><span class="sv">~4:30 pm</span></div>
+        <div class="stat-row"><span class="sk">Cumulative</span><span class="sv">3,315 mi</span></div>
       </div>
       <div class="sidebar-block">
         <div class="sidebar-label">Road Notes</div>
         <div class="road-condition">
           <span class="icon">◈</span>
-          <span><strong>PA Turnpike tolls:</strong> ~$35 Pittsburgh to the NJ border. E-ZPass saves ~40%; buy one if doing this often.</span>
+          <span><strong>Storrow Drive:</strong> absolutely no trucks. The 10-foot overpasses destroy U-Hauls every year. Use I-93 or Surface Artery to reach most Boston neighborhoods.</span>
         </div>
         <div class="road-condition">
           <span class="icon">◈</span>
-          <span><strong>Tunnel height limits:</strong> Lincoln (13'6"), Holland (12'1"), GWB (no limit). Moving trucks should take the GWB.</span>
+          <span><strong>Mass Pike tolls:</strong> ~$8–14 from the NY border to Boston. E-ZPass works across all Northeast states.</span>
         </div>
         <div class="road-condition">
           <span class="icon">◈</span>
-          <span>NYC parking for a truck or large vehicle: research your block before arrival. Not all neighborhoods have easy unloading.</span>
+          <span>Boston street parking for a large vehicle: confirm unloading logistics with your landlord before arrival — many blocks require permits or have narrow access.</span>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ============ POST-ARRIVAL ============ -->
+<div class="phase-block">
+  <div class="phase-label">↓ After You Arrive · Boston Unpack Window</div>
+  <h2>Three days to unpack,<br>settle in, and make it home.</h2>
+  <p class="phase-intro">Don't try to unpack everything on arrival day — you'll be exhausted after 580 miles and the city will be disorienting. Give it <strong>three structured days</strong>: essentials first, then systems, then the administrative tasks that are easy to defer but genuinely important. By June 5, the apartment should feel lived-in rather than camped-in.</p>
+  <div class="phase-task-grid">
+    <div class="phase-task-col">
+      <div class="ptc-label">Day 1 · June 2 (Mon)</div>
+      <div class="ptc-day">Arrive &amp; unload</div>
+      <ul>
+        <li>Unload the car and truck or accept container delivery</li>
+        <li>Get the bed set up before anything else — non-negotiable</li>
+        <li>Towels, toiletries, and one set of dishes accessible</li>
+        <li>Locate the nearest grocery store; stock the fridge minimally</li>
+        <li>Order dinner. You've earned it.</li>
+      </ul>
+    </div>
+    <div class="phase-task-col">
+      <div class="ptc-label">Day 2 · June 3 (Tue)</div>
+      <div class="ptc-day">Build the kitchen</div>
+      <ul>
+        <li>Unpack kitchen fully — this makes the apartment feel functional</li>
+        <li>Assemble any furniture that needs it (bed frame, shelves)</li>
+        <li>Hang shower curtain; find all the light switches</li>
+        <li>Return rental truck if applicable</li>
+        <li>Walk the neighborhood — find the coffee shop, the park, the market</li>
+      </ul>
+    </div>
+    <div class="phase-task-col">
+      <div class="ptc-label">Day 3 · June 4 (Wed)</div>
+      <div class="ptc-day">Admin &amp; settle</div>
+      <ul>
+        <li>Update address: USPS, bank, DMV, subscriptions</li>
+        <li>Transfer utilities and internet to new address</li>
+        <li>Find a new primary care doctor and pharmacy</li>
+        <li>Get a Charlie Card (Boston's transit card) at any T station</li>
+        <li>Unpack the remaining boxes at a comfortable pace</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- ============ SUMMARY TABLE ============ -->
 <section class="summary-section">
@@ -1554,17 +1739,17 @@ footer a:hover { color: var(--vermillion); }
       </tr>
       <tr>
         <td>6.</td>
-        <td class="route-cell">Pittsburgh → New York City</td>
-        <td class="miles-cell">374 mi</td>
-        <td class="time-cell">~5.5 hr</td>
-        <td class="highlight-cell">PA Turnpike Alleghenies; NYC skyline approach</td>
+        <td class="route-cell">Pittsburgh → Boston</td>
+        <td class="miles-cell">580 mi</td>
+        <td class="time-cell">~8.5 hr</td>
+        <td class="highlight-cell">Berkshire Mountains; Storrow Drive warning</td>
       </tr>
       <tr class="total-row">
         <td>Total</td>
-        <td class="route-cell">San Francisco → New York City</td>
-        <td class="miles-cell">3,109 mi</td>
-        <td class="time-cell">~44 hrs</td>
-        <td class="highlight-cell">6 nights · 6 states · 1 new coast</td>
+        <td class="route-cell">San Francisco → Boston</td>
+        <td class="miles-cell">3,315 mi</td>
+        <td class="time-cell">~48 hrs</td>
+        <td class="highlight-cell">6 nights · 7 states · 1 new coast</td>
       </tr>
     </tbody>
   </table>
@@ -1611,7 +1796,7 @@ footer a:hover { color: var(--vermillion); }
 <footer>
   <span><a href="moving-cost-comparison.html">← Back: Moving Cost Breakdown</a></span>
   <span class="end">— Safe travels eastward —</span>
-  <span>Vol. 01 · May 28 – June 2</span>
+  <span>Vol. 01 · May 25 – June 4</span>
 </footer>
 
 </div>
