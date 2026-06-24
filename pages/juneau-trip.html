@@ -275,6 +275,61 @@ h1 em {
   font-weight: 400;
 }
 
+.trip-tabs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  margin: 34px 0 28px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+}
+
+.trip-tab {
+  min-height: 48px;
+  border: 0;
+  background: var(--paper);
+}
+
+.trip-tab[aria-selected="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.is-active {
+  display: block;
+}
+
+.panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 34px 0 22px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.panel-head h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.panel-head p {
+  max-width: 540px;
+  color: var(--ink-soft);
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
 .tools {
   display: flex;
   flex-wrap: wrap;
@@ -436,12 +491,104 @@ button[aria-pressed="true"] {
   color: var(--ink-soft);
 }
 
+.person-grid,
+.recommendation-grid,
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.person-card,
+.recommendation-card,
+.address-card {
+  border: 1px solid var(--rule);
+  background: rgba(244, 239, 228, 0.86);
+  padding: 18px;
+}
+
+.person-card h3,
+.recommendation-card h3,
+.address-card h3 {
+  margin-bottom: 8px;
+  font-family: 'Fraunces', serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.person-card p,
+.recommendation-card p,
+.address-card p {
+  color: var(--ink-soft);
+}
+
+.flight-table {
+  display: grid;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  gap: 1px;
+}
+
+.flight-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--ink);
+}
+
+.flight-row > div {
+  min-height: 64px;
+  background: var(--paper);
+  padding: 14px;
+}
+
+.flight-row.header > div {
+  min-height: 42px;
+  background: var(--paper-deep);
+  color: var(--fireweed);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.flight-name {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.flight-placeholder {
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.recommendation-card .meta,
+.address-card .meta {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--fireweed);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .is-hidden { display: none; }
 
 @media (max-width: 900px) {
   .hero,
   .note-board { grid-template-columns: 1fr; }
+  .trip-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .person-grid,
+  .recommendation-grid,
+  .address-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -450,12 +597,20 @@ button[aria-pressed="true"] {
   .masthead { flex-direction: column; gap: 8px; }
   .hero { gap: 30px; margin-bottom: 28px; }
   .summary { grid-template-columns: 1fr; gap: 8px; }
+  .trip-tabs { grid-template-columns: 1fr 1fr; }
+  .panel-head { align-items: flex-start; }
   .tools { align-items: flex-start; }
   .filters { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
   button { padding: 0 8px; }
   .day { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
   .date { position: static; }
   .date .num { font-size: 38px; }
+  .person-grid,
+  .recommendation-grid,
+  .address-grid { grid-template-columns: 1fr; }
+  .flight-row { grid-template-columns: 1fr; }
+  .flight-row.header { display: none; }
+  .flight-row > div { min-height: 0; }
   .slots { grid-template-columns: 1fr; }
   .slot { min-height: 0; }
 }
@@ -505,7 +660,16 @@ button[aria-pressed="true"] {
     <div class="stat"><span>Mode</span><strong>Work + play</strong></div>
   </section>
 
-  <section>
+  <nav class="trip-tabs" aria-label="Trip sections">
+    <button class="trip-tab" type="button" data-tab="itinerary" aria-selected="true">Itinerary</button>
+    <button class="trip-tab" type="button" data-tab="flights" aria-selected="false">Flights</button>
+    <button class="trip-tab" type="button" data-tab="people" aria-selected="false">People</button>
+    <button class="trip-tab" type="button" data-tab="restaurants" aria-selected="false">Restaurants</button>
+    <button class="trip-tab" type="button" data-tab="activities" aria-selected="false">Activities</button>
+    <button class="trip-tab" type="button" data-tab="address" aria-selected="false">Address</button>
+  </nav>
+
+  <section class="tab-panel is-active" data-panel="itinerary">
     <div class="tools">
       <h2>Day by Day</h2>
       <div class="filters" aria-label="Filter itinerary">
@@ -664,6 +828,167 @@ button[aria-pressed="true"] {
     </div>
   </section>
 
+  <section class="tab-panel" data-panel="flights">
+    <div class="panel-head">
+      <h2>Flights</h2>
+      <p>Outbound and return flight details for everyone on the Juneau trip. Exact airline, flight number, timing, and confirmation info can drop in here when you have it.</p>
+    </div>
+    <div class="flight-table" aria-label="Flight details">
+      <div class="flight-row header">
+        <div>Traveler</div>
+        <div>Flight to Juneau</div>
+        <div>Flight home</div>
+      </div>
+      <div class="flight-row">
+        <div class="flight-name">Gwin</div>
+        <div class="flight-placeholder">To be added</div>
+        <div class="flight-placeholder">To be added</div>
+      </div>
+      <div class="flight-row">
+        <div class="flight-name">Eric</div>
+        <div class="flight-placeholder">To be added</div>
+        <div class="flight-placeholder">To be added</div>
+      </div>
+      <div class="flight-row">
+        <div class="flight-name">Wenting</div>
+        <div class="flight-placeholder">To be added</div>
+        <div class="flight-placeholder">To be added</div>
+      </div>
+      <div class="flight-row">
+        <div class="flight-name">Tim</div>
+        <div class="flight-placeholder">To be added</div>
+        <div class="flight-placeholder">To be added</div>
+      </div>
+      <div class="flight-row">
+        <div class="flight-name">Erica</div>
+        <div class="flight-placeholder">To be added</div>
+        <div class="flight-placeholder">To be added</div>
+      </div>
+      <div class="flight-row">
+        <div class="flight-name">Webber</div>
+        <div class="flight-placeholder">To be added</div>
+        <div class="flight-placeholder">To be added</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" data-panel="people">
+    <div class="panel-head">
+      <h2>People</h2>
+      <p>The core trip roster, with room to add notes like arrival timing, lodging, food preferences, or who is bringing what.</p>
+    </div>
+    <div class="person-grid">
+      <div class="person-card"><h3>Gwin</h3><p>Flight and trip notes to be added.</p></div>
+      <div class="person-card"><h3>Eric</h3><p>Flight and trip notes to be added.</p></div>
+      <div class="person-card"><h3>Wenting</h3><p>Flight and trip notes to be added.</p></div>
+      <div class="person-card"><h3>Tim</h3><p>Flight and trip notes to be added.</p></div>
+      <div class="person-card"><h3>Erica</h3><p>Flight and trip notes to be added.</p></div>
+      <div class="person-card"><h3>Webber</h3><p>Flight and trip notes to be added.</p></div>
+    </div>
+  </section>
+
+  <section class="tab-panel" data-panel="restaurants">
+    <div class="panel-head">
+      <h2>Restaurants</h2>
+      <p>A working shortlist for meals, coffee, and easy group decisions. These are placeholders until the group picks favorites.</p>
+    </div>
+    <div class="recommendation-grid">
+      <div class="recommendation-card">
+        <span class="meta">Dinner</span>
+        <h3>Birthday dinner</h3>
+        <p>Add a celebratory option for Wednesday night.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Casual</span>
+        <h3>Seafood spot</h3>
+        <p>Add a local fish, crab, or chowder option.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Morning</span>
+        <h3>Coffee + breakfast</h3>
+        <p>Add a reliable first-stop cafe near the stay.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Group</span>
+        <h3>Easy reservation</h3>
+        <p>Add a place that can handle all six people.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Low key</span>
+        <h3>Post-activity meal</h3>
+        <p>Add something casual for after hikes or boat time.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Backup</span>
+        <h3>Rainy-day comfort</h3>
+        <p>Add an indoor fallback for wet weather.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" data-panel="activities">
+    <div class="panel-head">
+      <h2>Activities</h2>
+      <p>A place to collect the stuff worth rallying for, from Fourth of July plans to bigger Juneau outings.</p>
+    </div>
+    <div class="recommendation-grid">
+      <div class="recommendation-card">
+        <span class="meta">July 4</span>
+        <h3>Parades</h3>
+        <p>Morning plan already penciled in for Saturday.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Friday</span>
+        <h3>Fireworks</h3>
+        <p>Evening event window from the original sheet.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Friday night</span>
+        <h3>Live music</h3>
+        <p>Add venue, time, and tickets if needed.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Saturday</span>
+        <h3>Neighborhood mini golf</h3>
+        <p>Already marked for July 4 afternoon.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Outdoors</span>
+        <h3>Glacier / trail option</h3>
+        <p>Add hike, shuttle, or timing details.</p>
+      </div>
+      <div class="recommendation-card">
+        <span class="meta">Water</span>
+        <h3>Boat or wildlife tour</h3>
+        <p>Add options, cost, and cancellation window.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" data-panel="address">
+    <div class="panel-head">
+      <h2>Schuyler's Address</h2>
+      <p>Keep the exact address, access notes, and any arrival instructions here once you are ready to add them.</p>
+    </div>
+    <div class="address-grid">
+      <div class="address-card">
+        <span class="meta">Address</span>
+        <h3>Schuyler</h3>
+        <p>Address to be added.</p>
+      </div>
+      <div class="address-card">
+        <span class="meta">Arrival</span>
+        <h3>Access notes</h3>
+        <p>Door code, parking, entry timing, or meeting instructions can go here.</p>
+      </div>
+      <div class="address-card">
+        <span class="meta">Reference</span>
+        <h3>Nearby anchors</h3>
+        <p>Add cross streets, landmarks, or rideshare notes if useful.</p>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script>
@@ -672,6 +997,8 @@ const unlockedKey = 'juneau-trip-unlocked';
 const gateForm = document.querySelector('#gate-form');
 const gateError = document.querySelector('#gate-error');
 const passwordInput = document.querySelector('#trip-password');
+const tabButtons = Array.from(document.querySelectorAll('[data-tab]'));
+const tabPanels = Array.from(document.querySelectorAll('[data-panel]'));
 const buttons = Array.from(document.querySelectorAll('[data-filter]'));
 const days = Array.from(document.querySelectorAll('.day'));
 
@@ -704,6 +1031,14 @@ gateForm.addEventListener('submit', async (event) => {
 
   gateError.textContent = 'That password did not unlock the trip.';
   passwordInput.select();
+});
+
+tabButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const target = button.dataset.tab;
+    tabButtons.forEach((item) => item.setAttribute('aria-selected', String(item === button)));
+    tabPanels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.panel === target));
+  });
 });
 
 buttons.forEach((button) => {
