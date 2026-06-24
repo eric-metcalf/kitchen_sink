@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juneau Trip Plan</title>
+<meta name="description" content="A day-by-day Juneau, Alaska trip plan for June 28 through July 5.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f4efe4;
+  --paper-deep: #e8dfce;
+  --ink: #1c1d1f;
+  --ink-soft: #4d4942;
+  --muted: #766f63;
+  --rule: #d4c8b5;
+  --water: #2f5d5c;
+  --spruce: #314f3f;
+  --ice: #b9d6d4;
+  --fireweed: #b74659;
+  --gold: #b48a3c;
+  --shadow: rgba(28, 29, 31, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(47, 93, 92, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(180, 138, 60, 0.05) 1px, transparent 1px),
+    var(--paper);
+  background-size: 56px 56px;
+  color: var(--ink);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 48px 0 84px;
+  position: relative;
+}
+
+body.locked .wrap {
+  filter: blur(18px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(28, 29, 31, 0.64);
+  backdrop-filter: blur(4px);
+}
+
+body:not(.locked) .gate {
+  display: none;
+}
+
+.gate-panel {
+  width: min(100%, 430px);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 12px 12px 0 rgba(28, 29, 31, 0.22);
+  padding: 28px;
+}
+
+.gate-panel h2 {
+  margin-bottom: 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.gate-panel p {
+  margin-bottom: 22px;
+  color: var(--ink-soft);
+}
+
+.gate-form {
+  display: grid;
+  gap: 12px;
+}
+
+.gate-form label {
+  color: var(--fireweed);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.gate-form input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 0 12px;
+  background: var(--paper-deep);
+  color: var(--ink);
+  font: 18px/1 'Inter Tight', sans-serif;
+}
+
+.gate-form button {
+  width: 100%;
+}
+
+.gate-error {
+  min-height: 20px;
+  color: var(--fireweed);
+  font-size: 14px;
+}
+
+.gate-hint {
+  margin-top: 16px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 14px;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink-soft);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.masthead a {
+  color: var(--fireweed);
+  text-decoration: none;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 34px;
+  padding-bottom: 42px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--fireweed);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--fireweed);
+}
+
+h1 {
+  max-width: 790px;
+  margin-bottom: 22px;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(52px, 9vw, 112px);
+  line-height: 0.93;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+}
+
+h1 em {
+  color: var(--fireweed);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.deck {
+  max-width: 650px;
+  color: var(--ink-soft);
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.postcard {
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--paper-deep);
+  box-shadow: 10px 10px 0 rgba(49, 79, 63, 0.14);
+}
+
+.postcard img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--ice);
+}
+
+.postcard figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 16px;
+  color: var(--ink-soft);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.stat {
+  border-top: 2px solid var(--ink);
+  padding: 14px 0 10px;
+}
+
+.stat span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--fireweed);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.stat strong {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 34px 0 22px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.tools h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  min-height: 38px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 0 14px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font: 500 11px/1 'DM Mono', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.itinerary {
+  display: grid;
+  gap: 14px;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.date {
+  position: sticky;
+  top: 16px;
+  align-self: start;
+}
+
+.date .dow {
+  color: var(--fireweed);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.date .num {
+  margin: 4px 0 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tag {
+  display: inline-block;
+  margin: 3px 4px 3px 0;
+  border: 1px solid var(--rule);
+  padding: 4px 8px;
+  color: var(--ink-soft);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tag.work { border-color: var(--water); color: var(--water); }
+.tag.play { border-color: var(--spruce); color: var(--spruce); }
+.tag.holiday { border-color: var(--fireweed); color: var(--fireweed); }
+.tag.travel { border-color: var(--gold); color: #8a6423; }
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.slot {
+  min-height: 116px;
+  border: 1px solid var(--rule);
+  background: rgba(244, 239, 228, 0.82);
+  padding: 14px;
+}
+
+.slot.empty {
+  background: rgba(232, 223, 206, 0.38);
+}
+
+.slot-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.slot strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.slot p {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.note-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 54px;
+}
+
+.note {
+  border-top: 2px solid var(--ink);
+  padding-top: 16px;
+}
+
+.note h3 {
+  margin-bottom: 12px;
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.note ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+  color: var(--ink-soft);
+}
+
+.is-hidden { display: none; }
+
+@media (max-width: 900px) {
+  .hero,
+  .note-board { grid-template-columns: 1fr; }
+  .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .wrap { width: min(100% - 28px, 1180px); padding-top: 32px; }
+  .masthead { flex-direction: column; gap: 8px; }
+  .hero { gap: 30px; margin-bottom: 28px; }
+  .summary { grid-template-columns: 1fr; gap: 8px; }
+  .tools { align-items: flex-start; }
+  .filters { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+  button { padding: 0 8px; }
+  .day { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+  .date { position: static; }
+  .date .num { font-size: 38px; }
+  .slots { grid-template-columns: 1fr; }
+  .slot { min-height: 0; }
+}
+</style>
+</head>
+<body class="locked">
+<section class="gate" aria-labelledby="gate-title">
+  <div class="gate-panel">
+    <h2 id="gate-title">Trip password</h2>
+    <p>This Juneau plan is tucked behind a small password gate.</p>
+    <form class="gate-form" id="gate-form">
+      <label for="trip-password">Password</label>
+      <input id="trip-password" name="trip-password" type="password" autocomplete="current-password" required>
+      <button type="submit">Unlock trip</button>
+      <div class="gate-error" id="gate-error" role="status" aria-live="polite"></div>
+    </form>
+    <div class="gate-hint">Private trip view</div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <a href="../index.html">Kitchen Sink</a>
+    <div>June 28 - July 5, 2026</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Trip plan</div>
+      <h1>Juneau, <em>Alaska</em></h1>
+      <p class="deck">A week that starts with a flight, keeps a little room for work, and opens up into parades, fireworks, live music, and long northern summer days.</p>
+    </div>
+    <figure class="postcard">
+      <img src="assets/juneau-hero.png" alt="Juneau-inspired landscape with coastal mountains, spruce forest, glacier ice, and calm water">
+      <figcaption>
+        <span>Coast + ice</span>
+        <span>Juneau, AK</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="summary" aria-label="Trip summary">
+    <div class="stat"><span>Place</span><strong>Juneau</strong></div>
+    <div class="stat"><span>Dates</span><strong>Jun 28 - Jul 5</strong></div>
+    <div class="stat"><span>Stay</span><strong>Airbnb</strong></div>
+    <div class="stat"><span>Mode</span><strong>Work + play</strong></div>
+  </section>
+
+  <section>
+    <div class="tools">
+      <h2>Day by Day</h2>
+      <div class="filters" aria-label="Filter itinerary">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="work" aria-pressed="false">Work</button>
+        <button type="button" data-filter="play" aria-pressed="false">Play</button>
+        <button type="button" data-filter="events" aria-pressed="false">Events</button>
+      </div>
+    </div>
+
+    <div class="itinerary">
+      <article class="day" data-kinds="travel">
+        <div class="date">
+          <div class="dow">Sunday</div>
+          <div class="num">6.28</div>
+          <span class="tag travel">Arrival</span>
+        </div>
+        <div class="slots">
+          <div class="slot">
+            <span class="slot-label">AM</span>
+            <strong>Fly</strong>
+            <p>Travel day into Juneau.</p>
+          </div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot empty"><span class="slot-label">PM</span><p>Open</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Settle in</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="work stay">
+        <div class="date">
+          <div class="dow">Monday</div>
+          <div class="num">6.29</div>
+          <span class="tag work">Work</span>
+          <span class="tag">Airbnb</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Work</strong><p>Keep the morning steady.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>Work</strong><p>Wrap the second half of the day.</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Open</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="work stay">
+        <div class="date">
+          <div class="dow">Tuesday</div>
+          <div class="num">6.30</div>
+          <span class="tag work">Work</span>
+          <span class="tag">Airbnb</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Work</strong><p>Second workday from the Airbnb.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>Work</strong><p>Keep evening flexible afterward.</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Open</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="work events stay">
+        <div class="date">
+          <div class="dow">Wednesday</div>
+          <div class="num">7.1</div>
+          <span class="tag holiday">B-day</span>
+          <span class="tag work">Maybe work</span>
+          <span class="tag">Airbnb</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Work?</strong><p>Question mark preserved from the sheet.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>FIFA: US</strong><p>4:30 PM PT / 3:30 PM AKDT.</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Birthday dinner option</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="play stay">
+        <div class="date">
+          <div class="dow">Thursday</div>
+          <div class="num">7.2</div>
+          <span class="tag play">Play</span>
+          <span class="tag">Airbnb</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Play</strong><p>First fully open day.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>Play</strong><p>Keep momentum or nap with honor.</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Open</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="play events stay">
+        <div class="date">
+          <div class="dow">Friday</div>
+          <div class="num">7.3</div>
+          <span class="tag holiday">Holiday</span>
+          <span class="tag play">Play</span>
+          <span class="tag">Airbnb</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Play</strong><p>Holiday pace starts here.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>Fireworks</strong><p>Evening event window.</p></div>
+          <div class="slot"><span class="slot-label">Dinner + evening</span><strong>Live music</strong><p>Keep this one easy to rally for.</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="play events stay">
+        <div class="date">
+          <div class="dow">Saturday</div>
+          <div class="num">7.4</div>
+          <span class="tag holiday">July 4</span>
+          <span class="tag play">Events</span>
+          <span class="tag">Airbnb</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Parades</strong><p>Fourth of July morning plan.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>Neighborhood mini golf</strong><p>Low-stakes excellence.</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Open</p></div>
+        </div>
+      </article>
+
+      <article class="day" data-kinds="travel play">
+        <div class="date">
+          <div class="dow">Sunday</div>
+          <div class="num">7.5</div>
+          <span class="tag travel">Departure</span>
+          <span class="tag play">Play</span>
+        </div>
+        <div class="slots">
+          <div class="slot"><span class="slot-label">AM</span><strong>Play</strong><p>Last bit of Juneau before leaving.</p></div>
+          <div class="slot empty"><span class="slot-label">Lunch</span><p>Open</p></div>
+          <div class="slot"><span class="slot-label">PM</span><strong>Play</strong><p>Departure timing can slot around this.</p></div>
+          <div class="slot empty"><span class="slot-label">Dinner + evening</span><p>Travel buffer</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="note-board">
+    <div class="note">
+      <h3>Open Slots</h3>
+      <ul>
+        <li>Lunch is open every day in the source sheet.</li>
+        <li>Dinner is flexible except Friday's live music note.</li>
+        <li>Sunday departure still needs flight timing.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Useful Anchors</h3>
+      <ul>
+        <li>Airbnb is the stay from Monday through Saturday.</li>
+        <li>Work is planned Monday and Tuesday, with Wednesday uncertain.</li>
+        <li>The play-heavy stretch runs Thursday through Sunday.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const passwordHash = '3cb3c1f122aa709bbd65c884f9437add8d3837c7516ac61bd7668ce0903fe424';
+const unlockedKey = 'juneau-trip-unlocked';
+const gateForm = document.querySelector('#gate-form');
+const gateError = document.querySelector('#gate-error');
+const passwordInput = document.querySelector('#trip-password');
+const buttons = Array.from(document.querySelectorAll('[data-filter]'));
+const days = Array.from(document.querySelectorAll('.day'));
+
+const hashPassword = async (value) => {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+};
+
+const unlockTrip = () => {
+  document.body.classList.remove('locked');
+  sessionStorage.setItem(unlockedKey, 'true');
+};
+
+if (sessionStorage.getItem(unlockedKey) === 'true') {
+  unlockTrip();
+} else {
+  passwordInput.focus();
+}
+
+gateForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  gateError.textContent = '';
+
+  const enteredHash = await hashPassword(passwordInput.value);
+  if (enteredHash === passwordHash) {
+    unlockTrip();
+    return;
+  }
+
+  gateError.textContent = 'That password did not unlock the trip.';
+  passwordInput.select();
+});
+
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    days.forEach((day) => {
+      const kinds = day.dataset.kinds.split(' ');
+      day.classList.toggle('is-hidden', filter !== 'all' && !kinds.includes(filter));
+    });
+  });
+});
+</script>
+</body>
+</html>
